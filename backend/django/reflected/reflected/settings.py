@@ -37,6 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+	# custom user
+	'user',
+	
+	# djangorestframework
+	'rest_framework',
+	
+	# djangorestframework-simplejwt
+	'rest_framework_simplejwt',
+
 ]
 
 MIDDLEWARE = [
@@ -121,3 +131,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# djangorestframework
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+}
+
+# CUSTOM USER
+
+AUTH_USER_MODEL = "user.User"
