@@ -1,5 +1,4 @@
-Django==3.2.25
-psycopg2-binary==2.9.9
-djangorestframework==3.14.0
-pygments
-py
+asgiref==3.8.1
+Django==5.0.4
+djangorestframework==3.15.1
+sqlparse==0.5.0
