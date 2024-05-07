@@ -1,6 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
+from enum import Enum
+
+
+class SocialType(Enum):
+    Ft = 0
+    Google = 1
+    Github = 2
+    Naver = 3
+    Kakao = 4
+
+
 class UserManager(BaseUserManager):
     def create_user(self, email, nickname, social_type, social_id):
         if not email:
@@ -11,8 +22,8 @@ class UserManager(BaseUserManager):
         user = self.model(
             email=self.normalize_email(email),
             nickname=nickname,
-			social_type=social_type,
-			social_id=social_id,
+            social_type=social_type,
+            social_id=social_id,
         )
 
         user.set_unusable_password()
@@ -28,15 +39,16 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
 class User(AbstractBaseUser):
     email = models.EmailField(
         verbose_name="email address",
         max_length=255,
         unique=True,
     )
-	# profile_image = models.ImageField() # needs Pillow Library
+    # profile_image = models.ImageField() # needs Pillow Library
     nickname = models.CharField(max_length=20, null=True)
-	
+
     SOCIAL_TYPES = (
         (0, "42"),
         (1, "Google"),
