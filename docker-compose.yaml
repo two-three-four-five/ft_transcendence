@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 networks:
   transcendence:
@@ -12,21 +12,20 @@ services:
     restart: always
     networks:
       - transcendence
-    depends_on:
-      - postgres
-  postgres:
-    image: postgres:16
-    container_name: 2345-postgres
-    restart: always
-    volumes:
-      - ts_db:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-    env_file:
-      - .env
-    networks:
-      - transcendence
+    # depends_on:
+    #   - postgres
+  # postgres:
+  #   image: postgres:16
+  #   container_name: 2345-postgres
+  #   restart: always
+  #   volumes:
+  #     - ts_db:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   env_file:
+  #     - .env
+  #   networks:
+  #     - transcendence
 volumes:
   ts_db:
     name: ts_db
-

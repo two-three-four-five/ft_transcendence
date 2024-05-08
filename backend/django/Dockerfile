@@ -4,7 +4,7 @@ RUN mkdir -p /usr/src/app
 
 WORKDIR /usr/src/app
 
-COPY ping-pang-pong .
+COPY reflected .
 COPY tools/docker-entrypoint.sh /tmp/
 
 RUN pip3 install -r requirements.txt
