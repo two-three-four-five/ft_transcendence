@@ -1,4 +1,4 @@
-from django.shortcuts import HttpResponseRedirect
+from django.shortcuts import HttpResponseRedirect, redirect
 from django.utils import timezone
 
 from urllib.parse import urlencode
@@ -23,7 +23,7 @@ class OAuthFtView(APIView):
             "response_type": "code",
         }
         url = f"{base_url}?{urlencode(params)}"
-        return HttpResponseRedirect(url)
+        return redirect(url)
 
 
 class OauthFtCallbackView(APIView):
@@ -82,11 +82,10 @@ class OauthFtCallbackView(APIView):
                     social_id=ft_id,
                 )
             refresh = RefreshToken.for_user(user)
-            return Response(
-                {
-                    "refresh": str(refresh),
-                    "access": str(refresh.access_token),
-                }
+
+            tokens = {"access": str(refresh.access_token), "refresh": str(refresh)}
+            return redirect(
+                f'http://localhost:8001/#access_token={tokens["access"]}&refresh_token={tokens["refresh"]}'
             )
 
         except Exception as e:

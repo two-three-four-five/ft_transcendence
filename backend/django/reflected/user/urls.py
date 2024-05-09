@@ -3,7 +3,7 @@ from django.urls import path
 from .views import UserTestView
 
 
-# host/auth/
+# host/user/
 urlpatterns = [
     path("test/", UserTestView.as_view()),
 ]
