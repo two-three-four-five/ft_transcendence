@@ -19,7 +19,7 @@ class OAuthFtView(APIView):
 
         params = {
             "client_id": "u-s4t2ud-b68c892947fb73d10628b594ee7638dc7787a3a3807166a0e6fc27fbdad1814e",
-            "redirect_uri": "http://localhost:8000/v1/auth/oauth/ft/callback",
+            "redirect_uri": "http://10.13.1.7:8000/v1/auth/oauth/ft/callback",
             "response_type": "code",
         }
         url = f"{base_url}?{urlencode(params)}"
@@ -40,7 +40,7 @@ class OauthFtCallbackView(APIView):
                     "client_id": "u-s4t2ud-b68c892947fb73d10628b594ee7638dc7787a3a3807166a0e6fc27fbdad1814e",
                     "client_secret": "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",
                     "code": code,
-                    "redirect_uri": "http://localhost:8000/v1/auth/oauth/ft/callback",
+                    "redirect_uri": "http://10.13.1.7:8000/v1/auth/oauth/ft/callback",
                 },
             )
             token_response_data = token_response.json()
@@ -85,7 +85,7 @@ class OauthFtCallbackView(APIView):
 
             tokens = {"access": str(refresh.access_token), "refresh": str(refresh)}
             return redirect(
-                f'http://localhost:8001/#access_token={tokens["access"]}&refresh_token={tokens["refresh"]}'
+                f'http://10.13.1.7:8001/#access_token={tokens["access"]}&refresh_token={tokens["refresh"]}'
             )
 
         except Exception as e:
