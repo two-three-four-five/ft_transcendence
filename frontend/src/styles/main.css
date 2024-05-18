@@ -1,6 +1,7 @@
-/* @import url("/src/styles/base/variables.css");
+@import url("/src/styles/base/variables.css");
 
 @import url("/src/styles/component/button.css");
+/*
 @import url("/src/styles/component/code.css");
 @import url("/src/styles/component/list.css");
 @import url("/src/styles/component/logo.css");
@@ -36,3 +37,22 @@
 
 /* @media only screen and (max-width: 768px) {
 } */
+#app {
+  background: radial-gradient(farthest-corner at 50% 30%, #b8bec1, #3a4b55);
+  /* background-color: slategrey; */
+}
+.container-fluid {
+  min-height: 100vh;
+  height: 100%;
+}
+
+.container-app {
+  min-height: 100vh;
+
+  width: 100%;
+  max-width: 540px;
+}
+
+.hide {
+  display: none;
+}

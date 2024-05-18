@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Inticoy</title>
+    <title>Reflected</title>
     <!-- Bootstrap -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -24,212 +24,129 @@
     <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
   <body>
-    <!-- navigation bar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container-md">
-        <div>
-          <i class="bi bi-apple me-4"></i>
-          <a class="navbar-brand" href="/">REFLECTED</a>
-        </div>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+    <div
+      class="container-fluid d-flex align-items-center justify-content-center p-0"
+      id="app"
+    >
+      <!-- LOGIN -->
+      <div
+        class="container-app d-flex flex-column align-items-center justify-content-center d-none"
+        id="login"
+      >
+        <svg
+          class="mb-4"
+          xmlns="http://www.w3.org/2000/svg"
+          width="108"
+          height="108"
+          fill="#ffffff"
+          class="bi bi-google"
+          viewBox="0 0 16 16"
         >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+          <path
+            d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"
+          />
+        </svg>
 
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav flex-row flex-wrap">
-            <li class="nav-item col-6 col-md-auto">
-              <a class="nav-link p-2" href="/play">Play</a>
-            </li>
-            <li class="nav-item col-6 col-md-auto">
-              <a class="nav-link p-2" href="/rank">Ranking</a>
-            </li>
-            <li class="nav-item col-6 col-md-auto">
-              <a class="nav-link p-2" href="/collection">Collection</a>
-            </li>
-          </ul>
-
-          <hr class="d-md-none text-black-50" />
-
-          <ul class="navbar-nav ms-md-auto">
-            <li class="nav-item">
-              <a class="nav-link">
-                <i class="bi bi-coin">5000</i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/shop"
-                ><i class="bi bi-cart-fill me-2"></i
-              ></a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <i class="col-2 bi bi-person-circle"></i>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/mypage">Mypage</a></li>
-                <li><a class="dropdown-item" href="/settings">Settings</a></li>
-                <li>
-                  <a class="dropdown-item" href="/logout">Logout</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
+        <div
+          class="w-100 p-5 d-flex flex-column align-items-center justify-content-center"
+        >
+          <a
+            href="http://localhost:8000/v1/auth/oauth/ft"
+            class="btn btn-md btn-primary d-flex align-items-center w-75 mt-3 p-3 shadow-sm"
+            id="btn-oauth-ft"
+          >
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              id="Calque_1"
+              viewBox="0 -200 960 960"
+              fill="currentColor"
+              width="24"
+              height="24"
+              enable-background="new 0 -200 960 960"
+            >
+              <polygon
+                id="polygon5"
+                points="32,412.6 362.1,412.6 362.1,578 526.8,578 526.8,279.1 197.3,279.1 526.8,-51.1 362.1,-51.1 32,279.1"
+              />
+              <polygon
+                id="polygon7"
+                points="597.9,114.2 762.7,-51.1 597.9,-51.1"
+              />
+              <polygon
+                id="polygon9"
+                points="762.7,114.2 597.9,279.1 597.9,443.9 762.7,443.9 762.7,279.1 928,114.2 928,-51.1 762.7,-51.1"
+              />
+              <polygon
+                id="polygon11"
+                points="928,279.1 762.7,443.9 928,443.9"
+              />
+            </svg>
+            <p class="text-md-start mx-3 my-0">Continue with 42</p>
+          </a>
+          <a
+            href="http://localhost:8000/v1/auth/oauth/google"
+            class="btn btn-md btn-primary d-flex align-items-center w-75 mt-3 p-3 shadow-sm"
+            id="btn-oauth-google"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              class="bi bi-google"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"
+              />
+            </svg>
+            <p class="text-md-start mx-3 my-0">Continue with Google</p>
+          </a>
+          <a
+            href="http://localhost:8000/v1/auth/oauth/naver"
+            class="btn btn-md btn-primary d-flex align-items-center w-75 mt-3 p-3 shadow-sm"
+            id="btn-oauth-naver"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0_403_243)">
+                <path
+                  d="M18 20H2C0.9 20 0 19.1 0 18V2C0 0.9 0.9 0 2 0H18C19.1 0 20 0.9 20 2V18C20 19.1 19.1 20 18 20Z"
+                  fill="green"
+                />
+                <path
+                  d="M11.35 10.25L8.50002 6.19995H6.15002V13.8H8.65002V9.74995L11.5 13.8H13.85V6.19995H11.35V10.25Z"
+                  fill="white"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_403_243">
+                  <rect width="20" height="20" fill="" />
+                </clipPath>
+              </defs>
+            </svg>
+            <p class="text-md-start mx-3 my-0">Continue with Naver</p>
+          </a>
         </div>
       </div>
-    </nav>
 
-    <div class="container-md" id="main-content">
-      <div id="home" class="content-section" style="display: none">
-        <h1>Home Page</h1>
-        <p>hi</p>
-      </div>
-      <div id="play" class="content-section" style="display: none">
-        <h1>Play Page</h1>
-        <p>hi</p>
-      </div>
-      <div id="singleplay" class="content-section" style="display: none">
-        <h1>Single Play Page</h1>
-        <p>hi</p>
-      </div>
-      <div id="multiplay" class="content-section" style="display: none">
-        <h1>Multi Play Page</h1>
-        <p>hi</p>
-      </div>
-      <div id="rank" class="content-section" style="display: none">
-        <h1>Ranking Page</h1>
-        <p>hi</p>
-      </div>
-      <div id="collection" class="content-section" style="display: none">
-        <h1>Collection Page</h1>
-        <p>hi</p>
-      </div>
-      <div id="shop" class="content-section" style="display: none">
-        <h1>Shop Page</h1>
-        <p>hi</p>
-      </div>
-      <div id="mypage" class="content-section" style="display: none">
-        <!-- Login 7 - Bootstrap Brain Component -->
-        <section class="p-3 p-md-4 p-xl-5">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
-                <div class="card border border-light-subtle rounded-4">
-                  <div class="card-body p-3 p-md-4 p-xl-5">
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="mb-5">
-                          <div class="text-center mb-4">
-                            <a href="#!">
-                              <img
-                                src="./asset/logo/logo_inticoy_lightmode.svg"
-                                alt="BootstrapBrain Logo"
-                                width="120"
-                                height="120"
-                              />
-                            </a>
-                          </div>
-                          <h4 class="text-center">
-                            Welcome back you've been missed!
-                          </h4>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-12">
-                        <p class="mt-5 mb-5">Or continue with</p>
-                        <div
-                          class="d-flex gap-2 gap-sm-3 justify-content-center"
-                        >
-                          <a
-                            href="http://localhost:8000/v1/auth/oauth/ft"
-                            class="btn btn-lg btn-outline-primary p-3 lh-1"
-                          >
-                            <svg
-                              width="28"
-                              height="28"
-                              version="1.1"
-                              id="Calque_1"
-                              fill="currentColor"
-                              sodipodi:docname="42_logo.svg"
-                              inkscape:version="0.48.2 r9819"
-                              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-                              xmlns:svg="http://www.w3.org/2000/svg"
-                              xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-                              xmlns:dc="http://purl.org/dc/elements/1.1/"
-                              xmlns:cc="http://creativecommons.org/ns#"
-                              xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-                              xmlns="http://www.w3.org/2000/svg"
-                              xmlns:xlink="http://www.w3.org/1999/xlink"
-                              x="0px"
-                              y="0px"
-                              viewBox="0 -200 960 960"
-                              enable-background="new 0 -200 960 960"
-                              xml:space="preserve"
-                            >
-                              <polygon
-                                id="polygon5"
-                                points="32,412.6 362.1,412.6 362.1,578 526.8,578 526.8,279.1 197.3,279.1 526.8,-51.1 362.1,-51.1 
-						 32,279.1 "
-                              />
-                              <polygon
-                                id="polygon7"
-                                points="597.9,114.2 762.7,-51.1 597.9,-51.1 "
-                              />
-                              <polygon
-                                id="polygon9"
-                                points="762.7,114.2 597.9,279.1 597.9,443.9 762.7,443.9 762.7,279.1 928,114.2 928,-51.1 762.7,-51.1 "
-                              />
-                              <polygon
-                                id="polygon11"
-                                points="928,279.1 762.7,443.9 928,443.9 "
-                              />
-                            </svg>
-                          </a>
-                          <a
-                            href="#!"
-                            class="btn btn-lg btn-outline-danger p-3 lh-1"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="28"
-                              height="28"
-                              fill="currentColor"
-                              class="bi bi-google"
-                              viewBox="0 0 16 16"
-                            >
-                              <path
-                                d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"
-                              />
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-      <div id="settings" class="content-section" style="display: none">
-        <h1>Settings</h1>
-        <p>hi</p>
+      <!-- -->
+      <div
+        class="container-app d-flex flex-column align-items-center justify-content-center d-none"
+        id="home"
+        style="display: none"
+      >
+        <a>PLAY</a>
+        <a>COLLECTION</a>
+        <a>STORE</a>
+        <a>MYPAGE</a>
       </div>
     </div>
 

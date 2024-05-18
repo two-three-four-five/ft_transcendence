@@ -1,4 +1,4 @@
-.button {
+/* .button {
   border-radius: 8px;
   transition: 0.5s;
 }
@@ -10,4 +10,31 @@
 .button:active {
   background-color: var(--color-main-30);
   transition: 0s;
+} */
+
+.btn-primary {
+  background-color: white;
+  color: black;
+  border-radius: 16px;
+  border-style: hidden;
+}
+
+#btn-oauth-ft.btn-primary:hover {
+  background-color: black;
+}
+
+#btn-oauth-google.btn-primary:hover {
+  background-color: rgb(59, 89, 211);
+}
+
+#btn-oauth-naver.btn-primary:hover {
+  background-color: green;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-black-10);
+}
+
+.btn-primary:active {
+  background-color: var(--color-black-10);
 }

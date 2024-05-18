@@ -1,61 +1,6 @@
-import { showErrorPage404 } from "./view/errorPage.js";
+// import { showErrorPage404 } from "./view/errorPage.js";
 import { showHome } from "./view/home.js";
-import { showPlay, showSinglePlay, showMultiPlay } from "./view/play.js";
-import { showRank } from "./view/rank.js";
-import { showMypage } from "./view/mypage.js";
-import { showSettings } from "./view/settings.js";
-import { showCollection } from "./view/collection.js";
-import { showShop } from "./view/shop.js";
-
-const router = {
-  "/": () => showHome(),
-  "/index.html": () => showHome(),
-  "/play": () => showPlay(),
-  "/play/single": () => showSinglePlay(),
-  "/play/multi": () => showMultiPlay(),
-  "/rank": () => showRank(),
-  "/collection": () => showCollection(),
-  "/shop": () => showShop(),
-  "/mypage": () => showMypage(),
-  "/settings": () => showSettings(),
-};
-
-function navigate(path) {
-  window.history.pushState({}, path, window.location.origin + path);
-  route();
-}
-
-function route() {
-  const path = window.location.pathname;
-  // Replace "\\w+" with "[^/]+" to match any character except "/"
-  // This will allow the capture of segments with hyphens
-  const route = Object.keys(router).find((r) =>
-    path.match(new RegExp("^" + r.replace(/:\w+/g, "[^/]+") + "$"))
-  );
-
-  if (route) {
-    const match = path.match(new RegExp(route.replace(/:\w+/g, "([^/]+)")));
-    const args = match ? match.slice(1) : null; // Capture groups로부터 인자 추출
-    router[route].apply(null, args);
-  } else {
-    // don't go from here
-    showErrorPage404();
-  }
-}
-
-// 브라우저 뒤로 가기/앞으로 가기 대응
-window.addEventListener("popstate", route);
-
-// 초기 라우트 실행
-document.addEventListener("DOMContentLoaded", route);
-
-// 예시를 위한 링크 클릭 이벤트 핸들링 (실제 구현에서는 더 견고한 방법을 사용해야 할 수 있습니다)
-document.addEventListener("click", (e) => {
-  if (e.target.matches("[data-link]")) {
-    e.preventDefault();
-    navigate(e.target.href);
-  }
-});
+import { showLogin } from "./view/login.js";
 
 window.onload = function () {
   const hash = window.location.hash.substr(1);
@@ -71,8 +16,13 @@ window.onload = function () {
     localStorage.setItem("refreshToken", refreshToken);
   }
 
+  if (window.location.hash) {
+    // Set the URL without the hash part
+    window.history.replaceState(null, document.title, window.location.pathname);
+  }
+
   if (accessToken == null) accessToken = localStorage.getItem("accessToken");
-  const url = "http://localhost:8000/v1/users/test";
+  const url = "http://10.13.1.7:8000/v1/users/test";
   fetch(url, {
     method: "GET",
     headers: {
@@ -86,9 +36,17 @@ window.onload = function () {
       return response.text();
     })
     .then((data) => {
+      showHome();
       console.log(data);
     })
     .catch((error) => {
+      showLogin();
       console.error("There was a problem with your fetch operation:", error);
     });
 };
+
+const test = document.getElementById("btn-oauth-ft");
+
+var currentHostname = window.location.hostname;
+
+test.href = test.href.replace("localhost", currentHostname);
