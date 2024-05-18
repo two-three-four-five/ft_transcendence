@@ -38,6 +38,42 @@ window.onload = function () {
     .then((data) => {
       showHome();
       console.log(data);
+
+      let toast = document.createElement("div");
+      toast.classList.add("toast");
+      toast.setAttribute("role", "alert");
+      toast.setAttribute("aria-live", "assertive");
+      toast.setAttribute("aria-atomic", "true");
+
+      // Create the toast header
+      let header = document.createElement("div");
+      header.classList.add("toast-header");
+      let title = document.createElement("strong");
+      title.classList.add("me-auto");
+      title.textContent = "Login Success";
+      let button = document.createElement("button");
+      button.classList.add("btn-close");
+      button.setAttribute("type", "button");
+      button.setAttribute("data-bs-dismiss", "toast");
+      button.setAttribute("aria-label", "Close");
+      header.appendChild(title);
+      header.appendChild(button);
+
+      // Create the toast body
+      let body = document.createElement("div");
+      body.classList.add("toast-body");
+      body.textContent = "Welcome, " + data.substring(1, data.lastIndexOf("@"));
+
+      // Append header and body to the toast element
+      toast.appendChild(header);
+      toast.appendChild(body);
+
+      // Append the toast element to the toast container
+      document.querySelector(".toast-container").appendChild(toast);
+
+      // Initialize the toast and show it
+      let bsToast = new bootstrap.Toast(toast);
+      bsToast.show();
     })
     .catch((error) => {
       showLogin();
