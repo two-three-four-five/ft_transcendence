@@ -1,21 +1,14 @@
 import { getHostname, getDjangoPort } from "/src/scripts/utils/var.js";
-import { hideApps, showApp } from "/src/scripts/utils/display.js";
-
-import { showHome } from "/src/scripts/view/home.js";
+import { navigateTo } from "/src/scripts/utils/display.js";
 
 const ftLoginButton = document.getElementById("btn-oauth-ft");
 const googleLoginButton = document.getElementById("btn-oauth-google");
 const naverLoginButton = document.getElementById("btn-oauth-naver");
 const kakaoLoginButton = document.getElementById("btn-oauth-kakao");
 
-export function showLogin() {
-  hideApps();
-  showApp("login");
-
-  //   ftLoginButton.href = "";
+export function setLogin() {
   ftLoginButton.addEventListener("click", function () {
-    hideApps();
-    showApp("spinner");
+    navigateTo("app-spinner", false);
 
     window.location.href =
       "http://" + getHostname() + ":" + getDjangoPort() + "/v1/auth/oauth/ft";
@@ -66,11 +59,12 @@ export function login() {
       return response.text();
     })
     .then((data) => {
-      showHome();
+      navigateTo("app-home", false);
       showToast(data);
     })
     .catch((error) => {
-      showLogin();
+      navigateTo("app-login", false);
+      setLogin();
       console.error("There was a problem with your fetch operation:", error);
     });
 }

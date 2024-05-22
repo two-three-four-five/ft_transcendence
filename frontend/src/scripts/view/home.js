@@ -1,14 +1,19 @@
-const main = document.getElementById("main-content");
-const apps = document.querySelectorAll(".container-app");
+import { navigateTo } from "/src/scripts/utils/display.js";
 
-export function showHome() {
-  apps.forEach((app) => {
-    app.classList.replace("d-block", "d-none");
+const buttons = [
+  { id: "home-play-btn", target: "app-play" },
+  { id: "home-collections-btn", target: "app-collections" },
+  { id: "home-store-btn", target: "app-store" },
+  { id: "home-mypage-btn", target: "app-mypage" },
+];
+
+export function setHome() {
+  buttons.forEach((button) => {
+    const element = document.getElementById(button.id);
+    if (element) {
+      element.addEventListener("click", () => navigateTo(button.target));
+    } else {
+      console.error(`Element with ID '${button.id}' not found.`);
+    }
   });
-
-  // 요청받은 섹션만 보여줍니다.
-  const targetSection = document.getElementById("home");
-  if (targetSection) {
-    targetSection.classList.replace("d-none", "d-block");
-  }
 }
