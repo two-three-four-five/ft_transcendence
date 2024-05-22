@@ -1,18 +1,42 @@
+const navbar = document.getElementById("navbar");
+const navLogoutBtn = document.getElementById("nav-logout-btn");
+const navBackBtn = document.getElementById("nav-back-btn");
+
 const apps = document.querySelectorAll(".container-app");
 
-export function hideApps() {
+HTMLElement.prototype.show = function () {
+  this.classList.replace("d-none", "d-block");
+};
+
+HTMLElement.prototype.hide = function () {
+  this.classList.replace("d-block", "d-none");
+};
+
+function hideApps() {
   apps.forEach((app) => {
-    app.classList.replace("d-block", "d-none");
+    app.hide();
   });
 }
 
-export function showApp(targetApp) {
+function showApp(targetApp) {
   const target = document.getElementById(targetApp);
-  if (target) {
-    target.classList.replace("d-none", "d-block");
+  if (!target) {
+    target = document.getElementById("app-login");
+  }
+  target.show();
+
+  if (targetApp === "app-login" || targetApp === "app-spinner") {
+    navbar.hide();
+  } else if (targetApp === "app-home") {
+    navbar.show();
+    navLogoutBtn.show();
+    navBackBtn.hide();
+  } else {
+    navbar.show();
+    navLogoutBtn.hide();
+    navBackBtn.show();
   }
 }
-
 export function navigateTo(targetApp, addToHistory = true) {
   hideApps();
   showApp(targetApp);
@@ -23,29 +47,11 @@ export function navigateTo(targetApp, addToHistory = true) {
 }
 
 export function switchApp() {
-  document.getElementById("playBtn").addEventListener("click", function () {
-    navigateTo("play");
-  });
-
-  document
-    .getElementById("collectionsBtn")
-    .addEventListener("click", function () {
-      navigateTo("collections");
-    });
-
-  document.getElementById("storeBtn").addEventListener("click", function () {
-    navigateTo("store");
-  });
-
-  document.getElementById("mypageBtn").addEventListener("click", function () {
-    navigateTo("mypage");
-  });
-
   window.addEventListener("popstate", function (event) {
     if (event.state && event.state.page) {
       navigateTo(event.state.page, false);
     } else {
-      navigateTo("home", false);
+      navigateTo("app-home", false);
     }
   });
 }
