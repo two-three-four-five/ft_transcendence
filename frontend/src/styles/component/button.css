@@ -12,6 +12,21 @@
   transition: 0s;
 } */
 
+.btn-navbar {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+}
+
+.btn-navbar:hover {
+  background-color: var(--color-black-10);
+}
+
+.btn-navbar:active {
+  background-color: var(--color-black-50);
+}
+
 .btn-primary {
   background-color: white;
   color: black;
