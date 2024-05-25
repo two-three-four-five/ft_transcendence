@@ -29,6 +29,100 @@
     <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
   <body>
+    <div id="bg-entire" class="position-fixed top-0 start-0"></div>
+    <div
+      id="bg-app"
+      class="position-fixed top-50 start-50 translate-middle"
+    ></div>
+    <nav class="navbar bg-body-tertiary fixed-top mx-auto d-none" id="navbar">
+      <div id="navbar-content" class="container-fluid">
+        <a
+          class="btn btn-navbar align-items-center p-2 d-none"
+          id="nav-logout-btn"
+        >
+          <span class="material-symbols-rounded"> logout </span>
+        </a>
+        <a
+          class="btn btn-navbar align-items-center p-2 d-none"
+          id="nav-back-btn"
+        >
+          <span class="material-symbols-rounded"> arrow_back_ios </span>
+        </a>
+
+        <div class="d-flex align-items-center justify-content-center">
+          <button
+            class="btn btn-navbar p-2"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            aria-label="Toggle navigation"
+          >
+            <span class="material-symbols-rounded"> notifications </span>
+          </button>
+          <button
+            class="btn btn-navbar ms-2 p-2"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            aria-label="Toggle navigation"
+          >
+            <span class="material-symbols-rounded"> people </span>
+          </button>
+          <button
+            class="btn btn-navbar ms-2 p-2"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            aria-label="Toggle navigation"
+          >
+            <span class="material-symbols-rounded"> menu </span>
+          </button>
+        </div>
+        <div
+          class="offcanvas offcanvas-end"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  id="menu-home-btn"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="menu-play-btn">PLAY</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="menu-collections-btn">COLLECTIONS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="menu-store-btn">STORE</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="menu-mypage-btn">MYPAGE</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
     <div id="app-login" class="container-app mx-auto d-none">
       <div
         class="d-flex flex-column align-items-center justify-content"
@@ -188,121 +282,50 @@
         </div>
       </div>
     </div>
-    <nav class="navbar bg-body-tertiary fixed-top mx-auto d-none" id="navbar">
-      <div class="container-fluid">
-        <a class="btn btn-secondary p-2 d-none" id="nav-logout-btn">
-          <span class="material-symbols-rounded"> logout </span>
-        </a>
-        <a class="btn btn-secondary p-2 d-none" id="nav-back-btn">
-          <span class="material-symbols-rounded"> arrow_back_ios </span>
-        </a>
-
-        <div class="d-flex align-items-center justify-content-center">
-          <button
-            class="btn btn-navbar ms-2 p-2"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar"
-            aria-label="Toggle navigation"
-          >
-            <span class="material-symbols-rounded"> notifications </span>
-          </button>
-          <button
-            class="btn btn-navbar ms-2 p-2"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar"
-            aria-label="Toggle navigation"
-          >
-            <span class="material-symbols-rounded"> people </span>
-          </button>
-          <button
-            class="btn btn-navbar ms-2 p-2"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar"
-            aria-label="Toggle navigation"
-          >
-            <span class="material-symbols-rounded"> menu </span>
-          </button>
-        </div>
-        <div
-          class="offcanvas offcanvas-end"
-          tabindex="-1"
-          id="offcanvasNavbar"
-          aria-labelledby="offcanvasNavbarLabel"
-        >
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  id="menu-home-btn"
-                  >Home</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="menu-play-btn">PLAY</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="menu-collections-btn">COLLECTIONS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="menu-store-btn">STORE</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="menu-mypage-btn">MYPAGE</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
     <div id="app-home" class="container-app mx-auto d-none">
       <div
         class="d-flex flex-column align-items-center justify-content"
-        style="padding-top: 144px; padding-bottom: 144px; gap: 108px"
+        style="
+          padding-top: 144px;
+          padding-bottom: 144px;
+          padding-left: 36px;
+          padding-right: 36px;
+          gap: 108px;
+        "
       >
         <div
           class="d-flex flex-column align-items-center justify-content-center"
         >
-          <a
-            class="btn btn-md btn-primary d-flex align-items-center justify-content-center mt-3 p-3 shadow-sm"
+          <img src="/asset/logo/reflected.svg" />
+          REFLECTED
+        </div>
+        <div
+          class="d-flex w-100 flex-column align-items-center justify-content-center"
+        >
+          <div
+            class="btn-menu w-100 d-flex align-items-center justify-content-center mt-3 p-3"
             id="home-play-btn"
           >
             <p class="text-md-start mx-3 my-0">PLAY</p>
-          </a>
-          <a
-            class="btn btn-md btn-primary d-flex align-items-center justify-content-center mt-3 p-3 shadow-sm"
+          </div>
+          <div
+            class="btn-menu w-100 d-flex align-items-center justify-content-center mt-3 p-3"
             id="home-collections-btn"
           >
             <p class="text-md-start mx-3 my-0">COLLECTIONS</p>
-          </a>
-          <a
-            class="btn btn-md btn-primary d-flex align-items-center justify-content-center mt-3 p-3 shadow-sm"
+          </div>
+          <div
+            class="btn-menu w-100 d-flex align-items-center justify-content-center mt-3 p-3"
             id="home-store-btn"
           >
             <p class="text-md-start mx-3 my-0">STORE</p>
-          </a>
-          <a
-            class="btn btn-md btn-primary d-flex align-items-center justify-content-center mt-3 p-3 shadow-sm"
+          </div>
+          <div
+            class="btn-menu w-100 d-flex align-items-center justify-content-center mt-3 p-3"
             id="home-mypage-btn"
           >
             <p class="text-md-start mx-3 my-0">MYPAGE</p>
-          </a>
+          </div>
         </div>
       </div>
     </div>
@@ -312,12 +335,11 @@
     </div>
     <div id="app-store" class="container-app mx-auto d-none">store</div>
     <div id="app-mypage" class="container-app mx-auto d-none">mypage</div>
-    <div
-      id="app-spinner"
-      class="position-fixed top-50 start-50 container-app mx-auto d-none"
-    >
-      <div class="spinner-border text-light" role="status">
-        <span class="sr-only"></span>
+    <div id="app-spinner" class="container-app mx-auto d-none">
+      <div class="position-fixed top-50 start-50 translate-middle">
+        <div class="spinner-border text-light" role="status">
+          <span class="sr-only"></span>
+        </div>
       </div>
     </div>
 

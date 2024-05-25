@@ -1,0 +1,22 @@
+#bg-entire {
+  z-index: -2;
+
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+
+  background-image: url(/asset/image/NEON2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+#bg-app {
+  z-index: -1;
+
+  min-height: 100vh;
+  height: 100%;
+  width: 414px;
+
+  background-color: var(--color-black-20);
+}
