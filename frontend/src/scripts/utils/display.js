@@ -42,7 +42,11 @@ export function navigateTo(targetApp, addToHistory = true) {
   showApp(targetApp);
 
   if (addToHistory) {
-    history.pushState({ page: targetApp }, "", "/" + targetApp);
+    history.pushState(
+      { page: targetApp },
+      "",
+      "/" + targetApp.replace("app-", "").replaceAll("-", "/")
+    );
   }
 }
 
