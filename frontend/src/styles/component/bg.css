@@ -20,3 +20,12 @@
 
   background-color: var(--color-black-20);
 }
+
+.offcanvas {
+  background: radial-gradient(
+    141.93% 72.48% at 49.87% 27.52%,
+    #9e29b1 0%,
+    rgba(22, 0, 26, 0.9) 100%
+  );
+  /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+}
