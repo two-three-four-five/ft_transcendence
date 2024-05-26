@@ -87,7 +87,7 @@ class OauthFtCallbackView(APIView):
             else:
                 user = User.objects.create_user(
                     email=user_reponse_data.get("email"),
-                    nickname=user_reponse_data.get("login"),
+                    nickname=user_reponse_data.get("login") + ".42",
                     social_type=SocialType.Ft.value,
                     social_id=ft_id,
                 )
