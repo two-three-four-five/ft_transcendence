@@ -1,7 +1,5 @@
-version: "3.8"
-
 networks:
-  transcendence:
+  reflected:
 
 services:
   nginx:
@@ -25,22 +23,23 @@ services:
     restart: always
     env_file:
       - .env
-    # networks:
-    #   - transcendence
-    # depends_on:
-    #   - postgres
-  # postgres:
-  #   image: postgres:16
-  #   container_name: 2345-postgres
-  #   restart: always
-  #   volumes:
-  #     - ts_db:/var/lib/postgresql/data
-  #   ports:
-  #     - "5432:5432"
-  #   env_file:
-  #     - .env
-  #   networks:
-  #     - transcendence
-# volumes:
-#   ts_db:
-#     name: ts_db
+    networks:
+      - reflected
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16
+    container_name: 2345-postgres
+    restart: always
+    volumes:
+      - "reflected_db:/var/lib/postgresql/data"
+    expose:
+      - "5432"
+    env_file:
+      - .env
+    networks:
+      - reflected
+volumes:
+  reflected_db:
+    name: reflected_db
