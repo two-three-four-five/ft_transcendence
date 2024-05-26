@@ -82,3 +82,27 @@ class FriendViewSet(viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         friends = Friend.objects.filter(Q(user1=request.user))
         return Response(FriendSerializer(friends, many=True).data)
+
+    def destroy(self, request, *args, **kwargs):
+        friend_pk = kwargs.get("pk")
+        try:
+            friend = Friend.objects.get(pk=friend_pk)
+            if friend.user1 == request.user:
+                Friend.objects.filter(
+                    Q(user1=friend.user1, user2=friend.user2)
+                    | Q(user1=friend.user2, user2=friend.user1)
+                ).delete()
+                return Response(
+                    {"detail": "Friend deleted successfully"},
+                    status=status.HTTP_204_NO_CONTENT,
+                )
+            else:
+                Response(
+                    {"detail": "You cannot delete this friendship"},
+                    status=status.HTTP_403_FORBIDDEN,
+                )
+        except Friend.DoesNotExist:
+            return Response(
+                {"detail": "Friend not found"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
