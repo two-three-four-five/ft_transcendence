@@ -24,6 +24,9 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
+from friend.urls import FriendRouter
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     # simplejwt
@@ -32,4 +35,5 @@ urlpatterns = [
     path("v1/token/verify/", TokenVerifyView.as_view(), name="token_verify"),
     path("v1/auth/", include("auth.urls")),
     path("v1/users/", include("user.urls")),
+    path("v1/friends/", include(FriendRouter.urls)),
 ]

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # custom user
     "user",
+    "friend",
     # djangorestframework
     "rest_framework",
     # djangorestframework-simplejwt

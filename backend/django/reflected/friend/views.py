@@ -1,0 +1,84 @@
+from django.db.models import Q
+from rest_framework import viewsets, permissions, status
+from rest_framework.response import Response
+from rest_framework.decorators import action
+from .models import FriendRequestStatus, FriendRequest, Friend
+from .serializers import UserSerializer, FriendRequestSerializer, FriendSerializer
+from user.models import User
+
+
+class FriendRequestViewSet(viewsets.ModelViewSet):
+    queryset = FriendRequest.objects.all()
+    serializer_class = FriendRequestSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def create(self, request, *args, **kwargs):
+        to_user_nickname = request.data.get("nickname")
+        to_user = User.objects.filter(nickname=to_user_nickname).first()
+        if not to_user:
+            return Response(
+                {"detail": "User not found."}, status=status.HTTP_404_NOT_FOUND
+            )
+        if FriendRequest.objects.filter(
+            from_user=request.user,
+            to_user=to_user,
+            status=FriendRequestStatus.PENDING.value,
+        ).exists():
+            return Response(
+                {"detail": "Friend request already sent."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        friend_request = FriendRequest(from_user=request.user, to_user=to_user)
+        friend_request.save()
+        return Response(
+            FriendRequestSerializer(friend_request).data, status=status.HTTP_201_CREATED
+        )
+
+    def list(self, request, *args, **kwargs):
+        requests = FriendRequest.objects.filter(to_user=request.user)
+        return Response(FriendRequestSerializer(requests, many=True).data)
+
+    @action(detail=True, methods=["post"])
+    def accept(self, request, pk=None):
+        friend_request = self.get_object()
+        if friend_request.to_user != request.user:
+            return Response(
+                {"detail": "You cannot accept this friend request."},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+        Friend.objects.create(
+            user1=friend_request.from_user, user2=friend_request.to_user
+        )
+        Friend.objects.create(
+            user1=friend_request.to_user, user2=friend_request.from_user
+        )
+        friend_request.status = FriendRequestStatus.ACCEPTED.value
+        friend_request.save()
+        return Response(
+            {"detail": "Friend request accepted."}, status=status.HTTP_200_OK
+        )
+
+    @action(detail=True, methods=["post"])
+    def reject(self, request, pk=None):
+        friend_request = self.get_object()
+        if friend_request.to_user != request.user:
+            return Response(
+                {"detail": "You cannot decline this friend request."},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+        friend_request.status = FriendRequestStatus.REJECTED.value
+        friend_request.save()
+        return Response(
+            {"detail": "Friend request rejected."}, status=status.HTTP_200_OK
+        )
+
+
+class FriendViewSet(viewsets.ModelViewSet):
+    queryset = Friend.objects.all()
+    serializer_class = FriendSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def list(self, request, *args, **kwargs):
+        friends = Friend.objects.filter(Q(user1=request.user))
+        return Response(FriendSerializer(friends, many=True).data)
