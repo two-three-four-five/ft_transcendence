@@ -48,10 +48,10 @@ class FriendRequestViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_403_FORBIDDEN,
             )
         Friend.objects.create(
-            user1=friend_request.from_user, user2=friend_request.to_user
+            user=friend_request.from_user, friend=friend_request.to_user
         )
         Friend.objects.create(
-            user1=friend_request.to_user, user2=friend_request.from_user
+            user=friend_request.to_user, friend=friend_request.from_user
         )
         friend_request.status = FriendRequestStatus.ACCEPTED.value
         friend_request.save()
@@ -80,17 +80,17 @@ class FriendViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def list(self, request, *args, **kwargs):
-        friends = Friend.objects.filter(Q(user1=request.user))
+        friends = Friend.objects.filter(Q(user=request.user))
         return Response(FriendSerializer(friends, many=True).data)
 
     def destroy(self, request, *args, **kwargs):
         friend_pk = kwargs.get("pk")
         try:
             friend = Friend.objects.get(pk=friend_pk)
-            if friend.user1 == request.user:
+            if friend.user == request.user:
                 Friend.objects.filter(
-                    Q(user1=friend.user1, user2=friend.user2)
-                    | Q(user1=friend.user2, user2=friend.user1)
+                    Q(user=friend.user, friend=friend.friend)
+                    | Q(user=friend.friend, friend=friend.user)
                 ).delete()
                 return Response(
                     {"detail": "Friend deleted successfully"},

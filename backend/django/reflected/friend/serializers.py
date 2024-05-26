@@ -18,9 +18,9 @@ class FriendRequestSerializer(serializers.ModelSerializer):
 
 
 class FriendSerializer(serializers.ModelSerializer):
-    user1 = UserSerializer(read_only=True)
-    user2 = UserSerializer(read_only=True)
+    user = UserSerializer(read_only=True)
+    friend = UserSerializer(read_only=True)
 
     class Meta:
         model = Friend
-        fields = ("id", "user1", "user2", "created_at")
+        fields = ("id", "user", "friend", "created_at")

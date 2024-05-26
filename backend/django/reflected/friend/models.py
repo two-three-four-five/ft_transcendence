@@ -11,11 +11,13 @@ class FriendRequestStatus(Enum):
 
 class FriendRequest(models.Model):
     from_user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, related_name="sent_requests", on_delete=models.CASCADE
+        settings.AUTH_USER_MODEL,
+        related_name="sent_friend_requests",
+        on_delete=models.CASCADE,
     )
     to_user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        related_name="received_requests",
+        related_name="received_friend_requests",
         on_delete=models.CASCADE,
     )
     status = models.IntegerField(
@@ -29,20 +31,20 @@ class FriendRequest(models.Model):
 
 
 class Friend(models.Model):
-    user1 = models.ForeignKey(
+    user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        related_name="sent_friend",
+        related_name="friend_user",
         on_delete=models.CASCADE,
     )
-    user2 = models.ForeignKey(
+    friend = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        related_name="received_friend",
+        related_name="friend_friend",
         on_delete=models.CASCADE,
     )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user1} & {self.user2}"
+        return f"{self.user} & {self.friend}"
 
     class Meta:
-        unique_together = ("user1", "user2")
+        unique_together = ("user", "friend")
