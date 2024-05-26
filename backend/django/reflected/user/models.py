@@ -12,6 +12,9 @@ class SocialType(Enum):
     Kakao = 4
 
 
+SOCIAL_TYPES = tuple((v.value, v.name) for v in SocialType)
+
+
 class UserManager(BaseUserManager):
     def create_user(self, email, nickname, social_type, social_id):
         if not email:
@@ -48,11 +51,6 @@ class User(AbstractBaseUser):
     )
     # profile_image = models.ImageField() # needs Pillow Library
     nickname = models.CharField(max_length=20, null=True)
-
-    SOCIAL_TYPES = (
-        (0, "42"),
-        (1, "Google"),
-    )
     social_type = models.IntegerField(choices=SOCIAL_TYPES, null=True)
     social_id = models.CharField(max_length=20, null=True)
     date_joined = models.DateTimeField(auto_now_add=True)
