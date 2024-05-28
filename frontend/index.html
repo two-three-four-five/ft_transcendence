@@ -21,6 +21,12 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
     <!-- Favicon -->
     <link rel="icon" href="/asset/favicon/favicon_16.png" />
     <link rel="alternative icon" href="/asset/favicon/favicon_32.png" />
@@ -37,40 +43,43 @@
     <nav class="navbar bg-body-tertiary fixed-top mx-auto d-none" id="navbar">
       <div id="navbar-content" class="container-fluid">
         <a
-          class="btn btn-navbar align-items-center p-2 d-none"
           id="nav-logout-btn"
+          class="btn btn-navbar align-items-center p-2 d-none"
         >
           <span class="material-symbols-rounded"> logout </span>
         </a>
         <a
-          class="btn btn-navbar align-items-center p-2 d-none"
           id="nav-back-btn"
+          class="btn btn-navbar align-items-center p-2 d-none"
         >
           <span class="material-symbols-rounded"> arrow_back_ios </span>
         </a>
 
         <div class="d-flex align-items-center justify-content-center">
           <button
+            id="nav-noti-btn"
             class="btn btn-navbar p-2"
             type="button"
             data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasNavbar"
+            data-bs-target="#offcanvas-notifications"
             aria-controls="offcanvasNavbar"
             aria-label="Toggle navigation"
           >
             <span class="material-symbols-rounded"> notifications </span>
           </button>
           <button
+            id="nav-friend-btn"
             class="btn btn-navbar ms-2 p-2"
             type="button"
             data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasNavbar"
+            data-bs-target="#offcanvas-friends"
             aria-controls="offcanvasNavbar"
             aria-label="Toggle navigation"
           >
             <span class="material-symbols-rounded"> people </span>
           </button>
           <button
+            id="nav-menu-btn"
             class="btn btn-navbar ms-2 p-2"
             type="button"
             data-bs-toggle="offcanvas"
@@ -80,6 +89,72 @@
           >
             <span class="material-symbols-rounded"> menu </span>
           </button>
+        </div>
+        <div
+          class="offcanvas offcanvas-end border-0"
+          tabindex="-1"
+          id="offcanvas-notifications"
+          aria-labelledby="offcanvas-notifications-label"
+        >
+          <div class="offcanvas-header p-4">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+            <div
+              type="button"
+              class="btn-close btn-navbar rounded-circle p-0"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></div>
+          </div>
+          <div class="offcanvas-body px-4 py-3">
+            <ul class="navbar-nav justify-content-end flex-grow-1">
+              <li class="nav-item">
+                <div class="nav-link btn-menu p-3" id="menu-home-btn">Home</div>
+              </li>
+              <li class="nav-item">
+                <div class="nav-link btn-menu w-100 p-3" id="menu-play-btn">
+                  PLAY
+                </div>
+              </li>
+              <li class="nav-item">
+                <div
+                  class="nav-link btn-menu w-100 p-3"
+                  id="menu-collections-btn"
+                >
+                  COLLECTIONS
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="nav-link btn-menu w-100 p-3" id="menu-store-btn">
+                  STORE
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="nav-link btn-menu w-100 p-3" id="menu-mypage-btn">
+                  MYPAGE
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="offcanvas offcanvas-end border-0"
+          tabindex="-1"
+          id="offcanvas-friends"
+          aria-labelledby="offcanvas-friends-label"
+        >
+          <div class="offcanvas-header p-4">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Friends</h5>
+            <div
+              type="button"
+              class="btn-close btn-navbar rounded-circle p-0"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></div>
+          </div>
+          <div
+            id="offcanvas-friends-list"
+            class="offcanvas-body px-4 py-3"
+          ></div>
         </div>
         <div
           class="offcanvas offcanvas-end border-0"

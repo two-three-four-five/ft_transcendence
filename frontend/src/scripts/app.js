@@ -4,8 +4,9 @@ import { setNavbar } from "/src/scripts/view/navbar.js";
 import { setHome } from "/src/scripts/view/home.js";
 
 window.addEventListener("load", login);
-document.addEventListener("DOMContentLoaded", switchApp);
-
-setNavbar();
-setLogin();
-setHome();
+document.addEventListener("DOMContentLoaded", function () {
+  setLogin();
+  switchApp();
+  setNavbar();
+  setHome();
+});

@@ -4,8 +4,20 @@
 @import url("/src/styles/component/button.css");
 @import url("/src/styles/component/navbar.css");
 
+/* .noto-sans-kr-<uniquifier > {
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+} */
+
 body {
   color: white;
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+
   min-height: 100vh;
   height: 100%;
 }

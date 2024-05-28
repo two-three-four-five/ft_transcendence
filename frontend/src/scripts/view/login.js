@@ -6,6 +6,10 @@ const googleLoginButton = document.getElementById("btn-oauth-google");
 const naverLoginButton = document.getElementById("btn-oauth-naver");
 const kakaoLoginButton = document.getElementById("btn-oauth-kakao");
 
+export function getAccessToken() {
+  return localStorage.getItem("accessToken");
+}
+
 export function setLogin() {
   ftLoginButton.addEventListener("click", function () {
     navigateTo("app-spinner", false);
