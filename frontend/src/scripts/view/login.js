@@ -48,7 +48,7 @@ export function login() {
   }
 
   const url =
-    "http://" + getHostname() + ":" + getDjangoPort() + "/v1/users/test";
+    "http://" + getHostname() + ":" + getDjangoPort() + "/v1/users/me";
 
   fetch(url, {
     method: "GET",
@@ -60,11 +60,11 @@ export function login() {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      return response.text();
+      return response.json();
     })
     .then((data) => {
       navigateTo("app-home", false);
-      showToast(data);
+      showToast(data["nickname"]);
     })
     .catch((error) => {
       navigateTo("app-login", false);
@@ -97,7 +97,7 @@ function showToast(data) {
   // Create the toast body
   let body = document.createElement("div");
   body.classList.add("toast-body");
-  body.textContent = "Welcome, " + data.substring(1, data.lastIndexOf("@"));
+  body.textContent = "Welcome, " + data;
 
   // Append header and body to the toast element
   toast.appendChild(header);

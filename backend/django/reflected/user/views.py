@@ -6,10 +6,10 @@ from rest_framework.views import APIView, status
 from user.serializers import UserSerializer
 
 
-class UserTestView(APIView):
+class UserMyselfView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request: Request):
         user = request.user
         serializer = UserSerializer(user)
-        return Response(serializer.data.get("email"), status=status.HTTP_200_OK)
+        return Response(serializer.data, status=status.HTTP_200_OK)
