@@ -14,8 +14,14 @@ import os
 from pathlib import Path
 
 HOSTNAME = os.getenv("HOSTNAME", "localhost")
+
 NGINX_PORT = os.getenv("NGINX_PORT", "2345")
+
 DJANGO_PORT = os.getenv("DJANGO_PORT", "2344")
+
+FORTYTWO_CLIENT_ID= os.getenv("FORTYTWO_CLIENT_ID", "abcdefg");
+FORTYTWO_SECRET= os.getenv("FORTYTWO_CLIENT_SECRET", "abcdefg");
+GOOGLE_CLIENT_ID= os.getenv("GOOGLE_CLIENT_ID", "abcdefg");
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

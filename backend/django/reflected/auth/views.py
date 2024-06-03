@@ -12,7 +12,7 @@ from user.models import User, SocialType
 
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from reflected.settings import HOSTNAME, NGINX_PORT, DJANGO_PORT
+from reflected.settings import HOSTNAME, NGINX_PORT, DJANGO_PORT, FORTYTWO_CLIENT_ID, FORTYTWO_SECRET, GOOGLE_CLIENT_ID
 
 
 class OAuthFtView(APIView):
@@ -20,7 +20,7 @@ class OAuthFtView(APIView):
         base_url = "https://api.intra.42.fr/oauth/authorize"
 
         params = {
-            "client_id": "u-s4t2ud-b68c892947fb73d10628b594ee7638dc7787a3a3807166a0e6fc27fbdad1814e",
+            "client_id": FORTYTWO_CLIENT_ID,
             "redirect_uri": "http://"
             + HOSTNAME
             + ":"
@@ -43,8 +43,8 @@ class OauthFtCallbackView(APIView):
                 "https://api.intra.42.fr/oauth/token",
                 data={
                     "grant_type": "authorization_code",
-                    "client_id": "u-s4t2ud-b68c892947fb73d10628b594ee7638dc7787a3a3807166a0e6fc27fbdad1814e",
-                    "client_secret": "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",
+                    "client_id": FORTYTWO_CLIENT_ID,
+                    "client_secret": FORTYTWO_SECRET,
                     "code": code,
                     "redirect_uri": "http://"
                     + HOSTNAME
@@ -106,11 +106,11 @@ class OauthFtCallbackView(APIView):
             return Response({"error": str(e)}, status=500)
 
 
-# class OAuthGoogleView(APIView):
-#     def get(self, request, format=None):
-#         return
+class OAuthGoogleView(APIView):
+    def get(self, request, format=None):
+        return
 
 
-# class OAuthGoogleCallbackView(APIView):
-#     def get(self, request, format=None):
-#         return
+class OAuthGoogleCallbackView(APIView):
+    def get(self, request, format=None):
+        return
