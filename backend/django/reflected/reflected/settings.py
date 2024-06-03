@@ -25,6 +25,8 @@ GOOGLE_CLIENT_ID= os.getenv("GOOGLE_CLIENT_ID", "abcdefg");
 GOOGLE_SECRET = os.getenv("GOOGLE_SECRET", "abcdefg");
 NAVER_CLIENT_ID= os.getenv("NAVER_CLIENT_ID", "abcdefg");
 NAVER_SECRET = os.getenv("NAVER_SECRET", "abcdefg");
+KAKAO_CLIENT_ID= os.getenv("KAKAO_CLIENT_ID", "abcdefg");
+KAKAO_SECRET = os.getenv("KAKAO_SECRET", "abcdefg");
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

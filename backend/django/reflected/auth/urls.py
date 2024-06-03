@@ -7,8 +7,8 @@ from .views import (
     OAuthGoogleCallbackView,
     OAuthNaverView,
     OAuthNaverCallbackView,
-    # OAuthKakaoView,
-    # OAuthKakaoCallbackView,
+    OAuthKakaoView,
+    OAuthKakaoCallbackView,
 )
 
 
@@ -20,6 +20,6 @@ urlpatterns = [
     path("oauth/google/callback", OAuthGoogleCallbackView.as_view()),
     path("oauth/naver", OAuthNaverView.as_view()),
     path("oauth/naver/callback", OAuthNaverCallbackView.as_view()),
-    # path("oauth/kakao", OAuthKakaoView.as_view()),
-    # path("oauth/kakao/callback", OAuthKakaoCallbackView.as_view()),
+    path("oauth/kakao", OAuthKakaoView.as_view()),
+    path("oauth/kakao/callback", OAuthKakaoCallbackView.as_view()),
 ]
