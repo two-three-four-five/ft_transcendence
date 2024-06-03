@@ -100,10 +100,12 @@
             <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
             <div
               type="button"
-              class="btn-close btn-navbar rounded-circle p-0"
+              class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
               data-bs-dismiss="offcanvas"
               aria-label="Close"
-            ></div>
+            >
+              <span class="material-symbols-rounded"> close </span>
+            </div>
           </div>
           <div class="offcanvas-body px-4 py-3">
             <ul class="navbar-nav justify-content-end flex-grow-1">
@@ -142,14 +144,85 @@
           id="offcanvas-friends"
           aria-labelledby="offcanvas-friends-label"
         >
-          <div class="offcanvas-header p-4">
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="addFriendModal"
+            tabindex="-1"
+            aria-labelledby="addFriendModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addFriendModalLabel">
+                    Add Friend
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <form id="addFriendForm">
+                    <div class="mb-3">
+                      <label for="friendNickname" class="form-label"
+                        >Friend's Nickname</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="friendNickname"
+                        required
+                      />
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="submitAddFriend"
+                  >
+                    Add Friend
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="offcanvas-header p-4 d-flex flex-row align-items-center justify-content-between"
+          >
             <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Friends</h5>
             <div
-              type="button"
-              class="btn-close btn-navbar rounded-circle p-0"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            ></div>
+              class="d-flex flex-row gap-2 p-0 align-items-center justify-content-center"
+            >
+              <div
+                id="friends-add"
+                type="button"
+                class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
+                aria-label="Add Friend"
+              >
+                <span class="material-symbols-rounded"> person_add </span>
+              </div>
+              <div
+                type="button"
+                class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              >
+                <span class="material-symbols-rounded"> close </span>
+              </div>
+            </div>
           </div>
           <div
             id="offcanvas-friends-list"
@@ -166,10 +239,12 @@
             <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
             <div
               type="button"
-              class="btn-close btn-navbar rounded-circle p-0"
+              class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
               data-bs-dismiss="offcanvas"
               aria-label="Close"
-            ></div>
+            >
+              <span class="material-symbols-rounded"> close </span>
+            </div>
           </div>
           <div class="offcanvas-body px-4 py-3">
             <ul class="navbar-nav justify-content-end flex-grow-1">

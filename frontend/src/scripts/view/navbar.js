@@ -88,6 +88,22 @@ function loadFriend() {
     });
 }
 
+// CSRF 토큰을 얻는 함수
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === name + "=") {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
 export function setNavbar() {
   setLogout();
   setBack();
@@ -96,4 +112,45 @@ export function setNavbar() {
 
   const friendsList = document.getElementById("nav-friend-btn");
   friendsList.addEventListener("click", loadFriend);
+
+  document.getElementById("friends-add").addEventListener("click", function () {
+    var addFriendModal = new bootstrap.Modal(
+      document.getElementById("addFriendModal"),
+      {
+        backdrop: false, // 백드롭 비활성화
+      }
+    );
+    addFriendModal.show();
+  });
+
+  document
+    .getElementById("submitAddFriend")
+    .addEventListener("click", function () {
+      var friendNickname = document.getElementById("friendNickname").value;
+
+      // POST 요청 보내기
+      fetch("http://localhost:2344/v1/friends/requests", {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("accessToken"),
+          "Content-Type": "application/json",
+          "X-CSRFToken": getCookie("csrftoken"), // CSRF 토큰 추가
+        },
+        body: JSON.stringify({ nickname: friendNickname }),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Network response was not ok.");
+        })
+        .then((data) => {
+          alert("Friend added successfully!");
+        })
+        .catch((error) => {
+          alert("There was a problem with your request: " + error.message);
+        });
+
+      addFriendModal.hide();
+    });
 }

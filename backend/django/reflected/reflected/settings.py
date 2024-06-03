@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
+APPEND_SLASH = False
+
 HOSTNAME = os.getenv("HOSTNAME", "localhost")
 
 NGINX_PORT = os.getenv("NGINX_PORT", "2345")
