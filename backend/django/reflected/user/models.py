@@ -50,9 +50,9 @@ class User(AbstractBaseUser):
         unique=True,
     )
     # profile_image = models.ImageField() # needs Pillow Library
-    nickname = models.CharField(max_length=20, null=True)
+    nickname = models.CharField(max_length=50, null=True)
     social_type = models.IntegerField(choices=SOCIAL_TYPES, null=True)
-    social_id = models.CharField(max_length=20, null=True)
+    social_id = models.CharField(max_length=50, null=True)
     date_joined = models.DateTimeField(auto_now_add=True)
 
     is_active = models.BooleanField(default=True)
