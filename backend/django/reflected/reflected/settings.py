@@ -21,14 +21,14 @@ NGINX_PORT = os.getenv("NGINX_PORT", "2345")
 
 DJANGO_PORT = os.getenv("DJANGO_PORT", "2344")
 
-FORTYTWO_CLIENT_ID= os.getenv("FORTYTWO_CLIENT_ID", "abcdefg");
-FORTYTWO_SECRET= os.getenv("FORTYTWO_CLIENT_SECRET", "abcdefg");
-GOOGLE_CLIENT_ID= os.getenv("GOOGLE_CLIENT_ID", "abcdefg");
-GOOGLE_SECRET = os.getenv("GOOGLE_SECRET", "abcdefg");
-NAVER_CLIENT_ID= os.getenv("NAVER_CLIENT_ID", "abcdefg");
-NAVER_SECRET = os.getenv("NAVER_SECRET", "abcdefg");
-KAKAO_CLIENT_ID= os.getenv("KAKAO_CLIENT_ID", "abcdefg");
-KAKAO_SECRET = os.getenv("KAKAO_SECRET", "abcdefg");
+FORTYTWO_CLIENT_ID = os.getenv("FORTYTWO_CLIENT_ID", "abcdefg")
+FORTYTWO_SECRET = os.getenv("FORTYTWO_CLIENT_SECRET", "abcdefg")
+GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "abcdefg")
+GOOGLE_SECRET = os.getenv("GOOGLE_SECRET", "abcdefg")
+NAVER_CLIENT_ID = os.getenv("NAVER_CLIENT_ID", "abcdefg")
+NAVER_SECRET = os.getenv("NAVER_SECRET", "abcdefg")
+KAKAO_CLIENT_ID = os.getenv("KAKAO_CLIENT_ID", "abcdefg")
+KAKAO_SECRET = os.getenv("KAKAO_SECRET", "abcdefg")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,21 +48,20 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # custom user
+    "django.contrib.sites",
+    "rest_framework",
+    "rest_framework_simplejwt",
+    "corsheaders",
+    "channels",
     "user",
     "friend",
-    # djangorestframework
-    "rest_framework",
-    # djangorestframework-simplejwt
-    "rest_framework_simplejwt",
-    # django-cors-headers
-    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -180,3 +179,5 @@ SIMPLE_JWT = {
     "AUTH_COOKIE_SAMESITE": None,  # Whether to set the flag restricting cookie leaks on cross-site requests.
     # This can be 'Lax', 'Strict', or None to disable the flag.
 }
+
+ASGI_APPLICATION = "reflected.asgi.application"
