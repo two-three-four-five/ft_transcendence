@@ -65,6 +65,29 @@ export function login() {
     .then((data) => {
       navigateTo("app-home", false);
       showToast(data["nickname"]);
+
+      // const accessToken = localStorage.getItem("accessToken");
+      const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
+      const wsUrl = `${wsScheme}://localhost:2344/ws/notifications/?token=${accessToken}`;
+
+      const socket = new WebSocket(wsUrl);
+
+      socket.onmessage = function (event) {
+        const data = JSON.parse(event.data);
+        console.log("New notification:", data.message);
+      };
+
+      socket.onclose = function (event) {
+        console.error("WebSocket closed unexpectedly:", event);
+      };
+
+      socket.onopen = function (event) {
+        console.log("WebSocket connection opened:", event);
+      };
+
+      socket.onerror = function (event) {
+        console.error("WebSocket error observed:", event);
+      };
     })
     .catch((error) => {
       navigateTo("app-login", false);

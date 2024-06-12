@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "user",
     "friend",
     "chat",
+    "notification",
 ]
 
 MIDDLEWARE = [
@@ -183,8 +184,7 @@ SIMPLE_JWT = {
 
 ASGI_APPLICATION = "reflected.asgi.application"
 
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    }
-}
+CHANNEL_LAYERS = {"default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}}
+
+
+SITE_ID = 1
