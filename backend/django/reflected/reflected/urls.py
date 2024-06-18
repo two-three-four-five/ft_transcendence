@@ -17,25 +17,14 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-    TokenVerifyView,
-)
-
 from friend.urls import FriendRouter
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # simplejwt
-    path("v1/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("v1/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-    path("v1/token/verify/", TokenVerifyView.as_view(), name="token_verify"),
     path("v1/auth/", include("auth.urls")),
-    path("v1/users/", include("user.urls")),
-    path("v1/notifications/", include("notification.urls")),
     path("v1/friends/", include(FriendRouter.urls)),
+    path("v1/notifications/", include("notification.urls")),
+    path("v1/users/", include("user.urls")),
     path("chat/", include("chat.urls")),
 ]
