@@ -88,6 +88,46 @@ export function login() {
       socket.onerror = function (event) {
         console.error("WebSocket error observed:", event);
       };
+
+      //////////////////////////////////
+
+      function generateNotificationContent(notification) {
+        switch (notification.type) {
+          case "FRIEND_REQUEST":
+            return `New friend request from ${notification.from_user.nickname}`;
+          case "NEW_CHATTING":
+            return `New message from ${notification.from_user.nickname}`;
+          case "GAME_REQUEST":
+            return `New game invite from ${notification.from_user.nickname}`;
+          default:
+            return "You have a new notification";
+        }
+      }
+
+      function fetchNotifications() {
+        const url = `http://localhost:2344/v1/notifications/`;
+        fetch(url, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            data.forEach((notification) => {
+              let content = generateNotificationContent(notification);
+              console.log(`New notification: ${content}`);
+              // 여기에 알림을 UI에 표시하는 코드를 추가합니다.
+            });
+          })
+          .catch((error) => {
+            console.error("Error fetching notifications:", error);
+          });
+      }
+
+      fetchNotifications();
+
+      ////////////////////////////////
     })
     .catch((error) => {
       navigateTo("app-login", false);
