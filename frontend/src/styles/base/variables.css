@@ -74,5 +74,17 @@
 
 .material-symbols-rounded {
   color: var(--color-foreground-icon);
-  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+  font-variation-settings: "FILL" 1, "wght" 700, "GRAD" 0, "opsz" 24;
+}
+
+.black-han-sans-regular {
+  font-family: "Black Han Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.do-hyeon-regular {
+  font-family: "Do Hyeon", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
