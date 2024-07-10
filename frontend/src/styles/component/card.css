@@ -1,0 +1,27 @@
+@import url("/src/styles/base/variables.css");
+
+.card {
+  padding: 1rem;
+  background-color: transparent;
+
+  border-radius: 1rem;
+  border-width: 0rem;
+}
+
+.card--transparent {
+  gap: 1.5rem;
+}
+
+.card--transparent:hover {
+  background-color: var(--color-black-10);
+}
+
+.card--transparent:active {
+  background-color: var(--color-black-20);
+}
+
+.card--white {
+  padding: 1.5rem;
+  gap: 1rem;
+  background-color: var(--color-bg-card-white);
+}
