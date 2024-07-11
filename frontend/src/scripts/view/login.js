@@ -66,6 +66,10 @@ export function login() {
       navigateTo("app-home", false);
       showToast(data["nickname"]);
 
+      localStorage.setItem("nickname", data["nickname"]);
+      localStorage.setItem("date_joined", data["date_joined"]);
+      localStorage.setItem("social_type", data["social_type"]);
+
       // const accessToken = localStorage.getItem("accessToken");
       const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
       const wsUrl = `${wsScheme}://localhost:2344/ws/notifications/?token=${accessToken}`;
