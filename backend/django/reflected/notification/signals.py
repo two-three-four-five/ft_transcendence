@@ -10,5 +10,5 @@ def create_friend_request_notification(sender, instance, created, **kwargs):
         Notification.objects.create(
             from_user=instance.from_user,
             to_user=instance.to_user,
-            type=NotificationType.FRIEND_REQUEST,
+            type=NotificationType.FRIEND_REQUEST.value,
         )
