@@ -76,3 +76,29 @@
 .navbar-toggler {
   border-radius: 8px;
 }
+
+.tabbar .btn--tabbar {
+	color: white;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+}
+
+.nav-link::after {
+	content: '';
+	display: block;
+	left: 50%;
+	bottom: -4px;
+	width: 0;
+	height: 4px;
+	border-radius: 4px;
+	background-color: #FFFFFF;
+	transition: width 0.3s ease, center 0.3s ease;
+	transform: translateX(64px) translateY(10px);
+}
+
+.nav-link.active::after {
+	width: 48px;
+	left: 0;
+	transform: translateX(64px) translateY(10px);
+}

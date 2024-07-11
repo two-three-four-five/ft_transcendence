@@ -82,6 +82,36 @@ function loadFriend() {
 			    </div>
 		    `;
       });
+      const friendRequestList = document.getElementById("offcanvas-friends-requests-list");
+      friendRequestList.innerHTML = "";
+      data.forEach((item) => {
+        friendRequestList.innerHTML += `
+			    <div
+            class="friend-item d-flex flex-row w-100 px-3 py-2 align-items-center justify-content-between"
+          >
+				    <div
+					    class="d-flex flex-row gap-3 p-0 align-items-center justify-content-center"
+				    >
+					    <span class="material-symbols-rounded"> person_alert </span>
+					    <p class="m-auto">${item.friend.nickname}</p>
+				    </div>
+				    <div
+					    class="d-flex flex-row gap-2 p-0 align-items-center justify-content-center"
+				    >
+              <div
+                class="btn btn-navbar p-2"
+              >
+                <span class="material-symbols-rounded"> check_circle </span>
+              </div>
+              <div
+                class="btn btn-navbar p-2"
+              >
+                <span class="material-symbols-rounded"> cancel </span>
+              </div>
+				    </div>
+			    </div>
+		    `;
+      });
     })
     .catch((error) => {
       console.error("Error fetching friend data:", error);
