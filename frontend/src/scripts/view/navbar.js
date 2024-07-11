@@ -39,6 +39,14 @@ function setMenuOffcanvas() {
   });
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.querySelector('.form-control[placeholder="Search"]');
+  searchInput.addEventListener("input", filterFriends);
+  loadFriend();
+});
+
+let friendsData = [];
+
 function loadFriend() {
   const token = getAccessToken();
   const url = "http://localhost:2344/v1/friends/";
@@ -52,7 +60,16 @@ function loadFriend() {
   })
     .then((response) => response.json())
     .then((data) => {
-      const friendList = document.getElementById("offcanvas-friends-list");
+      friendsData = data;
+      displayFriends(data);
+    })
+    .catch((error) => {
+      console.error("Error fetching friend data:", error);
+    });
+}
+
+function displayFriends(data) {
+  const friendList = document.getElementById("offcanvas-friends-list");
       friendList.innerHTML = "";
       data.forEach((item) => {
         friendList.innerHTML += `
@@ -82,10 +99,16 @@ function loadFriend() {
 			    </div>
 		    `;
       });
-    })
-    .catch((error) => {
-      console.error("Error fetching friend data:", error);
-    });
+}
+
+function filterFriends(event) {
+  const searchTerm = event.target.value.toLowerCase();
+  const filteredFriends = friendsData.filter(item => {
+    const nickname = item.friend.nickname || ""; // null 처리
+    return nickname.toLowerCase().includes(searchTerm);
+  }
+  );
+  displayFriends(filteredFriends);
 }
 
 function loadFriendRequest() {
