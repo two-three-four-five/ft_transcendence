@@ -82,6 +82,25 @@ function loadFriend() {
 			    </div>
 		    `;
       });
+    })
+    .catch((error) => {
+      console.error("Error fetching friend data:", error);
+    });
+}
+
+function loadFriendRequest() {
+  const token = getAccessToken();
+  const url = "http://localhost:2344/v1/friends/requests";
+
+  fetch(url, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
       const friendRequestList = document.getElementById("offcanvas-friends-requests-list");
       friendRequestList.innerHTML = "";
       data.forEach((item) => {
@@ -93,7 +112,7 @@ function loadFriend() {
 					    class="d-flex flex-row gap-3 p-0 align-items-center justify-content-center"
 				    >
 					    <span class="material-symbols-rounded"> person_alert </span>
-					    <p class="m-auto">${item.friend.nickname}</p>
+					    <p class="m-auto">${item.from_user.nickname}</p>
 				    </div>
 				    <div
 					    class="d-flex flex-row gap-2 p-0 align-items-center justify-content-center"
@@ -139,6 +158,7 @@ export function setNavbar() {
   setBack();
   setMenuOffcanvas();
   loadFriend();
+  loadFriendRequest();
 
   const friendsList = document.getElementById("nav-friend-btn");
   friendsList.addEventListener("click", loadFriend);
