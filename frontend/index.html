@@ -97,45 +97,44 @@
           aria-labelledby="offcanvas-notifications-label"
         >
           <div class="offcanvas-header p-4">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-            <div
-              type="button"
-              class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
+            <span
+              class="black-han-sans-regular large offcanvas-title"
+              id="offcanvasNavbarLabel"
             >
-              <span class="material-symbols-rounded"> close </span>
+              Notifications
+            </span>
+            <div
+              class="d-flex flex-row justify-content-center align-items-center gap-2"
+            >
+              <div
+                class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
+              >
+                <span class="material-symbols-rounded">
+                  playlist_add_check
+                </span>
+              </div>
+              <div
+                type="button"
+                class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              >
+                <span class="material-symbols-rounded"> close </span>
+              </div>
             </div>
           </div>
-          <div class="offcanvas-body px-4 py-3">
-            <ul class="navbar-nav justify-content-end flex-grow-1">
-              <li class="nav-item">
-                <div class="nav-link btn-menu p-3" id="menu-home-btn">Home</div>
-              </li>
-              <li class="nav-item">
-                <div class="nav-link btn-menu w-100 p-3" id="menu-play-btn">
-                  PLAY
-                </div>
-              </li>
-              <li class="nav-item">
-                <div
-                  class="nav-link btn-menu w-100 p-3"
-                  id="menu-collections-btn"
-                >
-                  COLLECTIONS
-                </div>
-              </li>
-              <li class="nav-item">
-                <div class="nav-link btn-menu w-100 p-3" id="menu-store-btn">
-                  STORE
-                </div>
-              </li>
-              <li class="nav-item">
-                <div class="nav-link btn-menu w-100 p-3" id="menu-mypage-btn">
-                  MYPAGE
-                </div>
-              </li>
-            </ul>
+          <div class="offcanvas-body px-3 py-0">
+            <div
+              id="notifications-list"
+              class="d-flex flex-column justify-content-center align-items-center gap-1"
+            >
+              <div
+                class="w-100 p-3 list d-flex flex-row justify-content-start align-items-center gap-3"
+              >
+                <span class="material-symbols-rounded"> person_alert </span>
+                <span class="medium"> jukim2님이 친구를 신청했습니다. </span>
+              </div>
+            </div>
           </div>
         </div>
         <div

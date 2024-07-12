@@ -11,3 +11,11 @@
   border-radius: 1rem;
   border-width: 0rem;
 }
+
+.list:hover {
+  background-color: var(--color-black-10);
+}
+
+.list:active {
+  background-color: var(--color-black-20);
+}
