@@ -1,3 +1,5 @@
+import { showToast } from "/src/scripts/utils/toast.js";
+
 const accessToken = localStorage.getItem("accessToken");
 
 function getNotificationIcon(notification) {
@@ -73,7 +75,10 @@ export function alertNotifications() {
 
   socket.onmessage = function (event) {
     const data = JSON.parse(event.data);
-    console.log("New notification:", data.message);
+    showToast(
+      "알림!!",
+      data.from_user + "님의 type : " + data.notification_type
+    );
   };
 
   socket.onclose = function (event) {

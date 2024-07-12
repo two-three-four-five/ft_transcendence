@@ -5,8 +5,10 @@ from django.conf import settings
 
 class NotificationType(Enum):
     FRIEND_REQUEST = 0
-    NEW_CHATTING = 1
-    GAME_REQUEST = 2
+    FRIEND_APPROVED = 1
+    FRIEND_DECLINED = 2
+    NEW_CHATTING = 3
+    GAME_REQUEST = 4
 
 
 class Notification(models.Model):
