@@ -66,7 +66,7 @@ export function login() {
     })
     .then((data) => {
       navigateTo("app-home", false);
-      showToast("check", data["nickname"]);
+      showToast("check", "환영합니다, " + data["nickname"] + " 님");
 
       localStorage.setItem("nickname", data["nickname"]);
       localStorage.setItem("date_joined", data["date_joined"]);
