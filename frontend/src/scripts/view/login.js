@@ -66,8 +66,7 @@ export function login() {
     })
     .then((data) => {
       navigateTo("app-home", false);
-      showToast("Login Success", data["nickname"]);
-      showToast("Login Success", data["nickname"]);
+      showToast("check", data["nickname"]);
 
       localStorage.setItem("nickname", data["nickname"]);
       localStorage.setItem("date_joined", data["date_joined"]);

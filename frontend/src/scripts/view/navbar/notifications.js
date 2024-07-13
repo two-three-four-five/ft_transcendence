@@ -1,17 +1,23 @@
 import { showToast } from "/src/scripts/utils/toast.js";
 
 const accessToken = localStorage.getItem("accessToken");
+const notificationsList = document.getElementById("notifications-list");
 
-function getNotificationIcon(notification) {
-  switch (notification.type) {
+function getNotificationIcon(notificaitonType) {
+  switch (notificaitonType) {
+    case "0":
     case "FRIEND_REQUEST":
       return "person_alert";
-    case "REQUEST_ACCEPTED":
+    case "1":
+    case "FRIEND_ACCEPTED":
       return "person_check";
-    case "REQUEST_DECLINED":
+    case "2":
+    case "FRIEND_DECLINED":
       return "person_cancel";
+    case "3":
     case "NEW_CHATTING":
       return "mark_chat_unread";
+    case "4":
     case "GAME_REQUEST":
       return "videogame_asset";
     default:
@@ -19,24 +25,27 @@ function getNotificationIcon(notification) {
   }
 }
 
-function getNotificationMessage(notification) {
-  switch (notification.type) {
+function getNotificationMessage(fromUser, notificaitonType) {
+  switch (notificaitonType) {
+    case "0":
     case "FRIEND_REQUEST":
-      return `${notification.from_user.nickname}님이 친구를 신청했습니다.`;
-    case "REQUEST_ACCEPTED":
-      return `${notification.from_user.nickname}님이 친구를 수락했습니다.`;
-    case "REQUEST_DECLINED":
-      return `${notification.from_user.nickname}님이 친구를 거절했습니다.`;
+      return `${fromUser}님이 친구를 신청했습니다.`;
+    case "1":
+    case "FRIEND_ACCEPTED":
+      return `${fromUser}님이 친구를 수락했습니다.`;
+    case "2":
+    case "FRIEND_DECLINED":
+      return `${fromUser}님이 친구를 거절했습니다.`;
+    case "3":
     case "NEW_CHATTING":
-      return `${notification.from_user.nickname}님에게 새로 온 메세지가 있습니다.`;
+      return `${fromUser}님에게 새로 온 메세지가 있습니다.`;
+    case "4":
     case "GAME_REQUEST":
-      return `${notification.from_user.nickname}님이 승부를 신청했습니다.`;
+      return `${fromUser}님이 승부를 신청했습니다.`;
     default:
       return "You have a new notification";
   }
 }
-
-const notificationsList = document.getElementById("notifications-list");
 
 export function loadNotifications() {
   notificationsList.innerHTML = "";
@@ -51,8 +60,11 @@ export function loadNotifications() {
     .then((response) => response.json())
     .then((data) => {
       data.forEach((notification) => {
-        let icon = getNotificationIcon(notification);
-        let message = getNotificationMessage(notification);
+        let icon = getNotificationIcon(notification.type);
+        let message = getNotificationMessage(
+          notification.from_user.nickname,
+          notification.type
+        );
 
         notificationsList.innerHTML += `
               <div
@@ -76,8 +88,8 @@ export function alertNotifications() {
   socket.onmessage = function (event) {
     const data = JSON.parse(event.data);
     showToast(
-      "알림!!",
-      data.from_user + "님의 type : " + data.notification_type
+      getNotificationIcon(data.notification_type),
+      getNotificationMessage(data.from_user, data.notification_type)
     );
   };
 
