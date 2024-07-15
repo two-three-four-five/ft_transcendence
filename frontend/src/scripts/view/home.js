@@ -48,9 +48,11 @@ function setHomeButtons() {
   });
 }
 
-export async function setHome() {
+export function setHome() {
   setHomeButtons();
+}
 
+export async function updateHome() {
   let data = await getAPI("v1/users/me");
   showToast("check", `환영합니다,  ${data["nickname"]}님`);
 

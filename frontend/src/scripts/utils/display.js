@@ -50,7 +50,7 @@ export function navigateTo(targetApp, addToHistory = true) {
   }
 }
 
-export function switchApp() {
+export function setAppSwitch() {
   window.addEventListener("popstate", function (event) {
     if (event.state && event.state.page) {
       navigateTo(event.state.page, false);

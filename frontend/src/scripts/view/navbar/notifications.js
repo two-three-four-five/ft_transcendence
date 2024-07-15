@@ -46,7 +46,7 @@ function getNotificationMessage(fromUser, notificaitonType) {
   }
 }
 
-export function loadNotifications() {
+export function updateNotifications() {
   const accessToken = localStorage.getItem("accessToken");
   notificationsList.innerHTML = "";
 

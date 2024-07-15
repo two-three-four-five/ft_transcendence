@@ -1,18 +1,23 @@
-import { switchApp, navigateTo } from "/src/scripts/utils/display.js";
+import { setAppSwitch, navigateTo } from "/src/scripts/utils/display.js";
+import { setHome, updateHome } from "/src/scripts/view/home.js";
 import { login, setLogin } from "/src/scripts/view/login.js";
-import { setNavbar } from "/src/scripts/view/navbar.js";
-import { setHome } from "/src/scripts/view/home.js";
+import { setNavbar, updateNavbar } from "/src/scripts/view/navbar.js";
 import { alertNotifications } from "/src/scripts/view/navbar/notifications.js";
 
-document.addEventListener("DOMContentLoaded", async function () {
+function setApp() {
   setLogin();
-  switchApp();
+  setHome();
+  setNavbar();
+  setAppSwitch();
+}
 
+document.addEventListener("DOMContentLoaded", async function () {
+  setApp();
   const loginSuccess = await login();
   if (loginSuccess) {
     navigateTo("app-home", false);
-    setHome();
-    setNavbar();
+    updateHome();
+    updateNavbar();
     alertNotifications();
   } else {
     navigateTo("app-login", false);
