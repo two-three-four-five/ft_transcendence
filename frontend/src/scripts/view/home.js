@@ -1,6 +1,7 @@
 import { navigateTo } from "/src/scripts/utils/display.js";
-
-import { setMypage } from "/src/scripts/view/home/mypage.js";
+import { getAPI } from "/src/scripts/utils/fetch.js";
+import { showToast } from "/src/scripts/utils/toast.js";
+import { updateMypage } from "/src/scripts/view/home/mypage.js";
 
 const buttons = [
   { id: "home-play-btn", handler: handlePlayButtonClick },
@@ -32,11 +33,11 @@ function handleStoreButtonClick() {
 }
 
 function handleMypageButtonClick() {
-  setMypage();
+  updateMypage();
   navigateTo("app-mypage");
 }
 
-export function setHome() {
+function setHomeButtons() {
   buttons.forEach((button) => {
     const element = document.getElementById(button.id);
     if (element) {
@@ -45,4 +46,17 @@ export function setHome() {
       console.error(`Element with ID '${button.id}' not found.`);
     }
   });
+}
+
+export async function setHome() {
+  setHomeButtons();
+
+  let data = await getAPI("v1/users/me");
+  showToast("check", `환영합니다,  ${data["nickname"]}님`);
+
+  localStorage.setItem("nickname", data["nickname"]);
+  localStorage.setItem("date_joined", data["date_joined"]);
+  localStorage.setItem("social_type", data["social_type"]);
+
+  updateMypage();
 }

@@ -9,7 +9,7 @@ function setLogout() {
       window.localStorage.removeItem("accessToken");
       window.localStorage.removeItem("refreshToken");
       window.history.replaceState(null, document.title, window.location.origin);
-      login();
+      location.reload(true);
     });
 }
 

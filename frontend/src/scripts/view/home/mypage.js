@@ -9,7 +9,7 @@ const mypageProfileNameCardRegisterDate = document.getElementById(
   "mypage-profile-name-card-register-date"
 );
 
-export function setMypage() {
+export function updateMypage() {
   /* PROFILE */
   // getItem 실패시 -> users/me GET 요청
   // GET 요청 실패시 -> default 값

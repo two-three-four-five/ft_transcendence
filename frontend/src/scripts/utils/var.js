@@ -6,6 +6,10 @@ export function getDjangoPort() {
   return "2344";
 }
 
+export function getServerHost() {
+  return "http://" + getHostname() + ":" + getDjangoPort();
+}
+
 export function getSocialTypeName(type) {
   if (type == 0) return "FortyTwo";
   else if (type == 1) return "Google";
