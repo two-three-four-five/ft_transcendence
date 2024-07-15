@@ -41,15 +41,18 @@ function setMenuOffcanvas() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.querySelector('.form-control[placeholder="Search"]');
+  const searchInput = document.querySelector(
+    '.form-control[placeholder="Search"]'
+  );
   searchInput.addEventListener("input", filterFriends);
-  loadFriend();
+  // loadFriend();
 });
 
 let friendsData = [];
 
 function loadFriend() {
   const token = getAccessToken();
+  console.log("loadFriend " + token);
   const url = "http://localhost:2344/v1/friends/";
 
   fetch(url, {
@@ -71,9 +74,9 @@ function loadFriend() {
 
 function displayFriends(data) {
   const friendList = document.getElementById("offcanvas-friends-list");
-      friendList.innerHTML = "";
-      data.forEach((item) => {
-        friendList.innerHTML += `
+  friendList.innerHTML = "";
+  data.forEach((item) => {
+    friendList.innerHTML += `
 			    <div
             class="friend-item d-flex flex-row w-100 px-3 py-2 align-items-center justify-content-between"
           >
@@ -99,16 +102,15 @@ function displayFriends(data) {
 				    </div>
 			    </div>
 		    `;
-      });
+  });
 }
 
 function filterFriends(event) {
   const searchTerm = event.target.value.toLowerCase();
-  const filteredFriends = friendsData.filter(item => {
+  const filteredFriends = friendsData.filter((item) => {
     const nickname = item.friend.nickname || ""; // null 처리
     return nickname.toLowerCase().includes(searchTerm);
-  }
-  );
+  });
   displayFriends(filteredFriends);
 }
 
@@ -125,7 +127,9 @@ function loadFriendRequest() {
   })
     .then((response) => response.json())
     .then((data) => {
-      const friendRequestList = document.getElementById("offcanvas-friends-requests-list");
+      const friendRequestList = document.getElementById(
+        "offcanvas-friends-requests-list"
+      );
       friendRequestList.innerHTML = "";
       data.forEach((item) => {
         friendRequestList.innerHTML += `

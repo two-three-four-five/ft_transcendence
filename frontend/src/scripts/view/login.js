@@ -28,7 +28,7 @@ export function setLogin() {
     "http://" + getHostname() + ":" + getDjangoPort() + "/v1/auth/oauth/kakao";
 }
 
-export function login() {
+export async function login() {
   const hash = window.location.hash.substring(1);
   const tokens = new URLSearchParams(hash);
   var accessToken = tokens.get("access_token");
@@ -52,6 +52,7 @@ export function login() {
   const url =
     "http://" + getHostname() + ":" + getDjangoPort() + "/v1/users/me";
 
+  console.log("login1");
   fetch(url, {
     method: "GET",
     headers: {
@@ -79,4 +80,5 @@ export function login() {
       setLogin();
       console.error("There was a problem with your fetch operation:", error);
     });
+  console.log("login2");
 }

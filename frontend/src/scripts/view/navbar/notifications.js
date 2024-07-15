@@ -1,6 +1,5 @@
 import { showToast } from "/src/scripts/utils/toast.js";
 
-const accessToken = localStorage.getItem("accessToken");
 const notificationsList = document.getElementById("notifications-list");
 
 function getNotificationIcon(notificaitonType) {
@@ -48,6 +47,7 @@ function getNotificationMessage(fromUser, notificaitonType) {
 }
 
 export function loadNotifications() {
+  const accessToken = localStorage.getItem("accessToken");
   notificationsList.innerHTML = "";
 
   const url = `http://localhost:2344/v1/notifications/`;
@@ -81,6 +81,8 @@ export function loadNotifications() {
 }
 
 export function alertNotifications() {
+  const accessToken = localStorage.getItem("accessToken");
+
   const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
   const wsUrl = `${wsScheme}://localhost:2344/ws/notifications/?token=${accessToken}`;
   const socket = new WebSocket(wsUrl);
