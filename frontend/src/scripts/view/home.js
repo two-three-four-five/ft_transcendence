@@ -58,7 +58,7 @@ export async function updateHome() {
     /* TODO: error handling */
     return;
   }
-  let data = response.json();
+  let data = await response.json();
   showToast("check", `환영합니다,  ${data["nickname"]}님`);
 
   localStorage.setItem("nickname", data["nickname"]);
