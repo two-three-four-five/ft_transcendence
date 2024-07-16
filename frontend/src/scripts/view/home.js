@@ -53,7 +53,12 @@ export function setHome() {
 }
 
 export async function updateHome() {
-  let data = await getAPI("v1/users/me");
+  let response = await getAPI("v1/users/me");
+  if (!response.ok) {
+    /* TODO: error handling */
+    return;
+  }
+  let data = response.json();
   showToast("check", `환영합니다,  ${data["nickname"]}님`);
 
   localStorage.setItem("nickname", data["nickname"]);

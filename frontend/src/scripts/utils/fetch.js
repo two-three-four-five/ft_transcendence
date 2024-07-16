@@ -10,12 +10,8 @@ export async function verifyToken() {
   const path = "v1/auth/token/verify/";
   const jsonToken = { token: accessToken };
 
-  const verifyTokenSuccess = await postAPI(path, jsonToken);
-  if (verifyTokenSuccess) {
-    return true;
-  } else {
-    return false;
-  }
+  const response = await postAPI(path, jsonToken);
+  return response.ok;
 }
 
 export async function getAPI(path) {
@@ -28,11 +24,7 @@ export async function getAPI(path) {
         Authorization: "Bearer " + accessToken,
       },
     });
-
-    if (!response.ok)
-      throw new Error(`GET ${url} ${response.status} (${response.statusText})`);
-
-    return await response.json();
+    return response;
   } catch (err) {
     console.error(`Error: ${err.message}`);
     return null;
@@ -52,13 +44,7 @@ export async function postAPI(path, jsonData) {
       },
       body: JSON.stringify(jsonData),
     });
-
-    if (!response.ok)
-      throw new Error(
-        `POST ${url} ${response.status} (${response.statusText})`
-      );
-
-    return await response.json();
+    return response;
   } catch (err) {
     console.error(`Error: ${err.message}`);
     return null;

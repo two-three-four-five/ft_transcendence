@@ -1,8 +1,5 @@
-import { showToast } from "/src/scripts/utils/toast.js";
-import { verifyToken, getAPI } from "/src/scripts/utils/fetch.js";
+import { verifyToken } from "/src/scripts/utils/fetch.js";
 import { getServerHost } from "/src/scripts/utils/var.js";
-import { navigateTo } from "/src/scripts/utils/display.js";
-import { alertNotifications } from "/src/scripts/view/navbar/notifications.js";
 
 const ftLoginButton = document.getElementById("btn-oauth-ft");
 const googleLoginButton = document.getElementById("btn-oauth-google");
