@@ -31,6 +31,14 @@ export function setAddFriend() {
     }
     addFriendModal.hide();
   });
+
+  const friendNicknameInput = document.getElementById("friendNickname");
+  friendNicknameInput.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault(); // 기본 동작 방지
+      // submitFriendRequest.click(); // 버튼 클릭을 수동으로 트리거
+    }
+  });
 }
 
 let friendsData = [];

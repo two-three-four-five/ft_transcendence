@@ -152,48 +152,40 @@
             aria-hidden="true"
           >
             <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="addFriendModalLabel">
+              <div class="border-radius-12 modal-content">
+                <div class="modal-header px-4 py-3">
+                  <span class="large modal-title" id="addFriendModalLabel">
                     Add Friend
-                  </h5>
-                  <button
+                  </span>
+                  <div
                     type="button"
-                    class="btn-close"
+                    class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
                     data-bs-dismiss="modal"
                     aria-label="Close"
-                  ></button>
+                  >
+                    <span class="material-symbols-rounded"> close </span>
+                  </div>
                 </div>
-                <div class="modal-body">
-                  <form id="addFriendForm">
-                    <div class="mb-3">
-                      <label for="friendNickname" class="form-label"
-                        >Friend's Nickname</label
-                      >
+                <div
+                  class="modal-body d-flex flex-column justify-content-center align-items-center px-3 py-2 gap-2"
+                >
+                  <form id="addFriendForm" class="w-100">
+                    <div>
                       <input
                         type="text"
-                        class="form-control"
+                        class="border-radius-16 form-control px-4 py-3"
+                        placeholder="nickname"
                         id="friendNickname"
                         required
                       />
                     </div>
                   </form>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-primary"
+                  <div
+                    class="btn-menu w-100 d-flex align-items-center justify-content-center p-3"
                     id="submitAddFriend"
                   >
-                    Add Friend
-                  </button>
+                    <p class="text-md-start mx-3 my-0">신청하기</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -223,27 +215,75 @@
               </div>
             </div>
           </div>
-          <div
-            class="offcanvas-body px-4 py-3"
+          <ul
+            class="nav nav-underline justify-content-around tabbar"
+            id="friendsTab"
+            role="tablist"
           >
-            <ul class="nav nav-underline justify-content-around tabbar" id="friendsTab" role="tablist" style="height: 52px">
-              <li class="nav-item w-50 h-100" role="presentation">
-                <button class="nav-link btn--tabbar w-100 h-100 p-0 active" id="friend-list-tab" data-bs-toggle="tab" data-bs-target="#friend-list-tab-pane" type="button" role="tab" aria-controls="friend-list-tab-pane" aria-selected="true">친구 목록</button>
-              </li>
-              <li class="nav-item w-50 h-100" role="presentation">
-                <button class="nav-link btn--tabbar w-100 h-100 p-0" id="friend-request-tab" data-bs-toggle="tab" data-bs-target="#friend-request-tab-pane" type="button" role="tab" aria-controls="friend-request-tab-pane" aria-selected="false">친구 신청</button>
-              </li>
-            </ul>
-            <div class="tab-content gap-3" id="myTabContent">
-              <div class="tab-pane fade show active" id="friend-list-tab-pane" role="tabpanel" aria-labelledby="friend-list-tab" tabindex="0">
-                <div id="friends-contents" class="d-flex flex-column gap-3 py-3">
-                  <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
-                  <div id="offcanvas-friends-list" class="d-flex flex-column gap-1"></div>
+            <li class="nav-item w-50" role="presentation">
+              <button
+                class="nav-link btn--tabbar w-100 py-3 active"
+                id="friend-list-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#friend-list-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="friend-list-tab-pane"
+                aria-selected="true"
+              >
+                친구 목록
+              </button>
+            </li>
+            <li class="nav-item w-50" role="presentation">
+              <button
+                class="nav-link btn--tabbar w-100 py-3"
+                id="friend-request-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#friend-request-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="friend-request-tab-pane"
+                aria-selected="false"
+              >
+                친구 신청
+              </button>
+            </li>
+          </ul>
+          <div class="offcanvas-body p-3">
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade show active"
+                id="friend-list-tab-pane"
+                role="tabpanel"
+                aria-labelledby="friend-list-tab"
+                tabindex="0"
+              >
+                <div id="friends-contents" class="d-flex flex-column gap-3">
+                  <input
+                    type="text"
+                    class="border-radius-32 form-control px-4 py-3"
+                    placeholder="Search"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                  />
+                  <div
+                    id="offcanvas-friends-list"
+                    class="d-flex flex-column gap-1"
+                  ></div>
                 </div>
               </div>
-              <div class="tab-pane fade" id="friend-request-tab-pane" role="tabpanel" aria-labelledby="friend-request-tab" tabindex="0">
+              <div
+                class="tab-pane fade"
+                id="friend-request-tab-pane"
+                role="tabpanel"
+                aria-labelledby="friend-request-tab"
+                tabindex="0"
+              >
                 <div id="offcanvas-friends-requests">
-                  <div id="offcanvas-friends-requests-list" class="d-flex flex-column gap-1 py-3"></div>
+                  <div
+                    id="offcanvas-friends-requests-list"
+                    class="d-flex flex-column gap-1"
+                  ></div>
                 </div>
               </div>
             </div>

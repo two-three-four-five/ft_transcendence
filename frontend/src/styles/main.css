@@ -2,9 +2,10 @@
 
 @import url("/src/styles/component/bg.css");
 @import url("/src/styles/component/button.css");
-@import url("/src/styles/component/card.css");
 @import url("/src/styles/component/list.css");
+@import url("/src/styles/component/form.css");
 @import url("/src/styles/component/navbar.css");
+@import url("/src/styles/component/modal.css");
 
 body {
   color: white;
@@ -27,12 +28,4 @@ body {
   .container-app {
     width: 414px;
   }
-}
-
-.border-radius-16 {
-  border-radius: 1rem;
-}
-
-.border-radius-8 {
-  border-radius: 0.5rem;
 }

@@ -1,0 +1,15 @@
+.modal-content {
+  background: radial-gradient(
+    141.93% 72.48% at 49.87% 27.52%,
+    #59038f 0%,
+    rgba(4, 0, 64, 0.9) 100%
+  );
+}
+
+.modal-header {
+  border-width: 0rem;
+}
+
+.modal-footer {
+  border-width: 0rem;
+}

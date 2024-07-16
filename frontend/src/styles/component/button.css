@@ -78,27 +78,27 @@
 }
 
 .tabbar .btn--tabbar {
-	color: white;
-    background: transparent;
-    border: 0;
-    box-shadow: none;
+  color: white;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 
 .nav-link::after {
-	content: '';
-	display: block;
-	left: 50%;
-	bottom: -4px;
-	width: 0;
-	height: 4px;
-	border-radius: 4px;
-	background-color: #FFFFFF;
-	transition: width 0.3s ease, center 0.3s ease;
-	transform: translateX(64px) translateY(10px);
+  content: "";
+  display: block;
+  width: 0px;
+  height: 4px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transform: translateY(1rem);
 }
 
 .nav-link.active::after {
-	width: 48px;
-	left: 0;
-	transform: translateX(64px) translateY(10px);
+  width: 48px;
+  transition: all 0.5s;
 }

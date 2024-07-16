@@ -1,0 +1,17 @@
+@import url("/src/styles/base/variables.css");
+
+.form-control {
+  background: var(--color-black-10);
+  color: white;
+  border-width: 0rem;
+  box-shadow: inset 1px 1.5px 4px rgba(0, 0, 0, 0.08),
+    inset 0px -0.5px 1px rgba(255, 255, 255, 0.25),
+    inset 1px 1.5px 4px rgba(0, 0, 0, 0.1),
+    inset 0px -0.5px 1px rgba(255, 255, 255, 0.3);
+}
+
+.form-control::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}

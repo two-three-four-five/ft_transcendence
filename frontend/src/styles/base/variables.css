@@ -160,3 +160,19 @@
 .xx-large {
   font-size: xx-large;
 }
+
+.border-radius-32 {
+  border-radius: 2rem;
+}
+
+.border-radius-16 {
+  border-radius: 1rem;
+}
+
+.border-radius-12 {
+  border-radius: 0.75rem;
+}
+
+.border-radius-8 {
+  border-radius: 0.5rem;
+}
