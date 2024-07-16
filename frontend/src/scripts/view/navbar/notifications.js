@@ -91,6 +91,7 @@ export function alertNotifications() {
     const data = JSON.parse(event.data);
     showToast(
       getNotificationIcon(data.notification_type),
+      "yellow",
       getNotificationMessage(data.from_user, data.notification_type)
     );
   };

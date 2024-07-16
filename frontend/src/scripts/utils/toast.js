@@ -1,4 +1,14 @@
-export function showToast(symbol, message) {
+var SUPPORTING_COLORS = [
+  "black",
+  "white",
+  "grey",
+  "red",
+  "green",
+  "blue",
+  "yellow",
+];
+
+export function showToast(symbol, color, message) {
   let toast = document.createElement("div");
 
   toast.classList.add("toast");
@@ -20,7 +30,8 @@ export function showToast(symbol, message) {
   );
 
   let icon = document.createElement("span");
-  icon.classList.add("green");
+  if (!SUPPORTING_COLORS.includes(color)) color = "green";
+  icon.classList.add(color);
   icon.classList.add("material-symbols-rounded");
   icon.textContent = symbol;
 

@@ -59,7 +59,7 @@ export async function updateHome() {
     return;
   }
   let data = await response.json();
-  showToast("check", `환영합니다,  ${data["nickname"]}님`);
+  showToast("check", "green", `환영합니다,  ${data["nickname"]}님`);
 
   localStorage.setItem("nickname", data["nickname"]);
   localStorage.setItem("date_joined", data["date_joined"]);

@@ -45,22 +45,35 @@ export function setAddFriend() {
     switch (response.status) {
       case HTTPCODE.OK:
       case HTTPCODE.CREATED:
-        showToast("check", `${friendNickname}님에게 친구 신청을 성공했습니다.`);
+        showToast(
+          "check",
+          "green",
+          `${friendNickname}님에게 친구 신청을 성공했습니다.`
+        );
         break;
       case HTTPCODE.BAD_REQUEST:
-        showToast("close", `${friendNickname}님과 이미 친구입니다.`);
+        showToast("close", "yellow", `${friendNickname}님과 이미 친구입니다.`);
         break;
       case HTTPCODE.NOT_FOUND:
-        showToast("close", `${friendNickname}님은 존재하지 않습니다.`);
+        showToast(
+          "close",
+          "yellow",
+          `${friendNickname}님은 존재하지 않습니다.`
+        );
         break;
       case HTTPCODE.CONFLICT:
         showToast(
           "close",
+          "yellow",
           `${friendNickname}님에게 이미 친구 신청을 했습니다.`
         );
         break;
       default:
-        showToast("close", `${friendNickname}님에게 친구 신청을 실패했습니다.`);
+        showToast(
+          "close",
+          "red",
+          `${friendNickname}님에게 친구 신청을 실패했습니다.`
+        );
         break;
     }
     addFriendModal.hide();
