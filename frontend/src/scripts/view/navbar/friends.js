@@ -2,6 +2,8 @@ import { getAPI, postAPI } from "/src/scripts/utils/fetch.js";
 import { showToast } from "/src/scripts/utils/toast.js";
 import { HTTPCODE } from "/src/scripts/utils/var.js";
 
+let friendsData = [];
+
 export function setFriends() {
   const friendsList = document.getElementById("nav-friend-btn");
   friendsList.addEventListener("click", updateFriends);
@@ -29,7 +31,7 @@ export function setAddFriend() {
   );
 
   const friendNicknameInput = document.getElementById(
-    "friend-request-nickname-form"
+    "friend-request-nickname-input"
   );
   friendRequestSubmitButton.addEventListener("click", async function () {
     var friendNickname = friendNicknameInput.value;
@@ -87,8 +89,6 @@ export function setAddFriend() {
   });
 }
 
-let friendsData = [];
-
 export async function updateFriends() {
   let response = await getAPI("v1/friends/");
   if (!response.ok) {
@@ -96,6 +96,7 @@ export async function updateFriends() {
     return;
   }
   let data = await response.json();
+  friendsData = data;
   displayFriends(data);
 }
 
@@ -142,11 +143,12 @@ export async function updateFriendRequests() {
   }
 }
 
+const friendNicknameSearchInput = document.getElementById(
+  "friend-nickname-search-input"
+);
+
 document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.querySelector(
-    '.form-control[placeholder="Search"]'
-  );
-  searchInput.addEventListener("input", filterFriends);
+  friendNicknameSearchInput.addEventListener("input", filterFriends);
 });
 
 function filterFriends(event) {
