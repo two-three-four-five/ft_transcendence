@@ -1,4 +1,5 @@
 import { getAPI, postAPI } from "/src/scripts/utils/fetch.js";
+import { showToast } from "/src/scripts/utils/toast.js";
 
 export function setFriends() {
   const friendsList = document.getElementById("nav-friend-btn");
@@ -6,30 +7,45 @@ export function setFriends() {
 }
 
 export function setAddFriend() {
+  let addFriendModal = new bootstrap.Modal(
+    document.getElementById("modal-friend-request"),
+    {
+      backdrop: false,
+    }
+  );
+
+  let friendOffcanvas = new bootstrap.Offcanvas(
+    document.getElementById("offcanvas-friends")
+  );
+
   const friendRequest = document.getElementById("friends-add");
   friendRequest.addEventListener("click", function () {
-    var addFriendModal = new bootstrap.Modal(
-      document.getElementById("addFriendModal"),
-      {
-        backdrop: false, // 백드롭 비활성화
-      }
-    );
     addFriendModal.show();
   });
 
-  const submitFriendRequest = document.getElementById("submitAddFriend");
+  const submitFriendRequest = document.getElementById(
+    "friend-request-submit-button"
+  );
   submitFriendRequest.addEventListener("click", async function () {
-    var friendNickname = document.getElementById("friendNickname").value;
+    var friendNickname = document.getElementById(
+      "friend-request-nickname-form"
+    ).value;
+
+    if (!friendNickname) {
+      alert("닉네임을 입력하십시오.");
+      return;
+    }
 
     const friendRequestSuccess = await postAPI("v1/friends/requests", {
       nickname: friendNickname,
     });
     if (friendRequestSuccess) {
-      alert("Friend added successfully!");
+      showToast("check", `${friendNickname}님에게 친구 신청을 성공했습니다.`);
     } else {
-      alert("There was a problem with your request");
+      showToast("close", `${friendNickname}님에게 친구 신청을 실패했습니다.`);
     }
     addFriendModal.hide();
+    friendOffcanvas.hide();
   });
 
   const friendNicknameInput = document.getElementById("friendNickname");
