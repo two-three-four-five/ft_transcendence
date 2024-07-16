@@ -16,6 +16,10 @@ class FriendRequestViewSet(viewsets.ModelViewSet):
         to_user_nickname = request.data.get("nickname")
         to_user = User.objects.filter(nickname=to_user_nickname).first()
         # if already friend : 400 BAD REQUEST
+        if Friend.objects.filter(user=request.user, friend=to_user).exists():
+            return Response(
+                {"detail": "Already Friends."}, status=status.HTTP_400_BAD_REQUEST
+            )
         if not to_user:
             return Response(
                 {"detail": "User not found."}, status=status.HTTP_404_NOT_FOUND
