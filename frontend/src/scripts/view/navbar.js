@@ -1,10 +1,9 @@
 import { updateNotifications } from "/src/scripts/view/navbar/notifications.js";
+import { setFriends, updateFriends } from "/src/scripts/view/navbar/friends.js";
 import {
   setAddFriend,
-  setFriends,
-  updateFriends,
   updateFriendRequests,
-} from "/src/scripts/view/navbar/friends.js";
+} from "/src/scripts/view/navbar/friends/friendRequests.js";
 
 export function setNavbar() {
   setLogout();
