@@ -29,11 +29,13 @@ export async function updateFriendRequests() {
             class="d-flex flex-row gap-2 p-0 align-items-center justify-content-center"
           >
             <div
+              id="friend-request-accept-btn-${item.id}"
               class="btn btn-navbar p-2"
             >
-              <span class="material-symbols-rounded"> check_circle </span>
+            <span class="material-symbols-rounded"> check_circle </span>
             </div>
             <div
+              id="friend-request-decline-btn-${item.id}"
               class="btn btn-navbar p-2"
             >
               <span class="material-symbols-rounded"> cancel </span>
@@ -41,6 +43,41 @@ export async function updateFriendRequests() {
           </div>
         </div>
       `;
+    });
+
+    data.forEach((item) => {
+      document
+        .getElementById(`friend-request-accept-btn-${item.id}`)
+        .addEventListener("click", async () => {
+          console.log("click accept");
+          const response = await postAPI(
+            `v1/friends/requests/${item.id}/accept`,
+            null
+          );
+          switch (response.status) {
+            case HTTPCODE.OK:
+              const data = await response.json();
+              showToast("check", "green", `~~~ 님과 친구가 되었습니다.`);
+              break;
+            default:
+              console.log(`handle error`);
+              break;
+          }
+        });
+      document
+        .getElementById(`friend-request-decline-btn-${item.id}`)
+        .addEventListener("click", async () => {
+          const response = await postAPI();
+          switch (response.status) {
+            case HTTPCODE.OK:
+              const data = await response.json();
+              showToast("check", "green", `~~~ 님과 친구가 되었습니다.`);
+              break;
+            default:
+              console.log(`handle error`);
+              break;
+          }
+        });
     });
   }
 }
