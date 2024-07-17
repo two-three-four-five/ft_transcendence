@@ -7,6 +7,12 @@ let friendsData = [];
 export function setFriends() {
   const friendsList = document.getElementById("nav-friend-btn");
   friendsList.addEventListener("click", updateFriends);
+
+  const friendsTab = document.getElementById("friends-tab");
+  friendsTab.addEventListener("click", updateFriends);
+
+  const friendRequestsTab = document.getElementById("friend-requests-tab");
+  friendRequestsTab.addEventListener("click", updateFriendRequests);
 }
 
 export function setAddFriend() {
