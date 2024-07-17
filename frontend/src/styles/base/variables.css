@@ -33,6 +33,7 @@
   --color-black-80: rgba(0, 0, 0, 0.8);
 
   --color-foreground-icon: rgba(239, 220, 255, 1);
+  --color-foreground-icon-green: rgba(29, 196, 15, 1);
 
   --font-thin: 100;
   --font-extralight: 200;
@@ -123,7 +124,11 @@
   color: yellow;
 }
 
-/* font-size 
+.icon-green {
+	color: var(--color-foreground-icon-green);
+}
+
+/* font-size
  * xx-small (9px)
  * x-small (10px)
  * small (13px)

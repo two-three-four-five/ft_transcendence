@@ -79,15 +79,15 @@
             <span class="material-symbols-rounded"> people </span>
           </button>
           <button
-            id="nav-menu-btn"
+            id="nav-chat-btn"
             class="btn btn-navbar ms-2 p-2"
             type="button"
             data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvas-menu"
+            data-bs-target="#offcanvas-chat"
             aria-controls="offcanvasNavbar"
             aria-label="Toggle navigation"
           >
-            <span class="material-symbols-rounded"> menu </span>
+            <span class="material-symbols-rounded"> forum </span>
           </button>
         </div>
         <div
@@ -297,49 +297,316 @@
         <div
           class="offcanvas offcanvas-end border-0"
           tabindex="-1"
-          id="offcanvas-menu"
-          aria-labelledby="offcanvas-menu-label"
+          id="offcanvas-chat"
+          aria-labelledby="offcanvas-chat-label"
         >
-          <div class="offcanvas-header p-4">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-            <div
-              type="button"
-              class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            >
-              <span class="material-symbols-rounded"> close </span>
+          <div id="offcanvas-chatrooms" class="d-flex h-100 flex-column">
+            <div class="offcanvas-header p-4">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Chat</h5>
+              <div
+                type="button"
+                class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              >
+                <span class="material-symbols-rounded"> close </span>
+              </div>
+            </div>
+            <div class="offcanvas-body px-3 py-0 d-flex flex-column gap-1">
+              <div
+                class="chatroom-item d-flex flex-row w-100 px-3 py-2 align-items-center justify-content-between"
+              >
+                <div class="chatroom-left d-flex flex-row gap-3 align-items-center">
+                  <div class="icon">
+                    <span class="material-symbols-rounded"> sensors_off </span>
+                  </div>
+                  <div class="chatroom-info d-flex flex-column gap-1">
+                    <span class="medium">jukim2</span>
+                    <span class="small">Hello, nice to meet you.</span>
+                  </div>
+                </div>
+                <div class="chatroom-right d-flex flex-column gap-2 align-items-end">
+                  <span class="small">15</span>
+                  <span class="small">24.01.01.</span>
+                </div>
+              </div>
+              <div
+                class="chatroom-item d-flex flex-row w-100 px-3 py-2 align-items-center justify-content-between"
+              >
+                <div class="chatroom-left d-flex flex-row gap-3 align-items-center">
+                  <div class="icon">
+                    <span class="material-symbols-rounded"> sensors_off </span>
+                  </div>
+                  <div class="chatroom-info d-flex flex-column gap-1">
+                    <span class="medium">jukim2</span>
+                    <span class="small">Hello, nice to meet you.</span>
+                  </div>
+                </div>
+                <div class="chatroom-right d-flex flex-column gap-2 align-items-end">
+                  <span class="small">15</span>
+                  <span class="small">24.01.01.</span>
+                </div>
+              </div>
+              <div
+                class="chatroom-item d-flex flex-row w-100 px-3 py-2 align-items-center justify-content-between"
+              >
+                <div class="chatroom-left d-flex flex-row gap-3 align-items-center">
+                  <div class="icon">
+                    <span class="material-symbols-rounded"> sensors_off </span>
+                  </div>
+                  <div class="chatroom-info d-flex flex-column gap-1">
+                    <span class="medium">jukim2</span>
+                    <span class="small">Hello, nice to meet you.</span>
+                  </div>
+                </div>
+                <div class="chatroom-right d-flex flex-column gap-2 align-items-end">
+                  <span class="small">15</span>
+                  <span class="small">24.01.01.</span>
+                </div>
+              </div>
+              <div
+                class="chatroom-item d-flex flex-row w-100 px-3 py-2 align-items-center justify-content-between"
+              >
+                <div class="chatroom-left d-flex flex-row gap-3 align-items-center">
+                  <div class="icon">
+                    <span class="material-symbols-rounded"> sensors_off </span>
+                  </div>
+                  <div class="chatroom-info d-flex flex-column gap-1">
+                    <span class="medium">jukim2</span>
+                    <span class="small">Hello, nice to meet you.</span>
+                  </div>
+                </div>
+                <div class="chatroom-right d-flex flex-column gap-2 align-items-end">
+                  <span class="small">15</span>
+                  <span class="small">24.01.01.</span>
+                </div>
+              </div>
+              <div
+                class="chatroom-item d-flex flex-row w-100 px-3 py-2 align-items-center justify-content-between"
+              >
+                <div class="chatroom-left d-flex flex-row gap-3 align-items-center">
+                  <div class="icon">
+                    <span class="material-symbols-rounded"> sensors_off </span>
+                  </div>
+                  <div class="chatroom-info d-flex flex-column gap-1">
+                    <span class="medium">jukim2</span>
+                    <span class="small">Hello, nice to meet you.</span>
+                  </div>
+                </div>
+                <div class="chatroom-right d-flex flex-column gap-2 align-items-end">
+                  <span class="small">15</span>
+                  <span class="small">24.01.01.</span>
+                </div>
+              </div>
+              <div
+                class="chatroom-item d-flex flex-row w-100 px-3 py-2 align-items-center justify-content-between"
+              >
+                <div class="chatroom-left d-flex flex-row gap-3 align-items-center">
+                  <div class="icon">
+                    <span class="material-symbols-rounded"> sensors_off </span>
+                  </div>
+                  <div class="chatroom-info d-flex flex-column gap-1">
+                    <span class="medium">jukim2</span>
+                    <span class="small">Hello, nice to meet you.</span>
+                  </div>
+                </div>
+                <div class="chatroom-right d-flex flex-column gap-2 align-items-end">
+                  <span class="small">15</span>
+                  <span class="small">24.01.01.</span>
+                </div>
+              </div>
+              <div
+                class="chatroom-item d-flex flex-row w-100 px-3 py-2 align-items-center justify-content-between"
+              >
+                <div class="chatroom-left d-flex flex-row gap-3 align-items-center">
+                  <div class="icon">
+                    <span class="material-symbols-rounded"> sensors_off </span>
+                  </div>
+                  <div class="chatroom-info d-flex flex-column gap-1">
+                    <span class="medium">jukim2</span>
+                    <span class="small">Hello, nice to meet you.</span>
+                  </div>
+                </div>
+                <div class="chatroom-right d-flex flex-column gap-2 align-items-end">
+                  <span class="small">15</span>
+                  <span class="small">24.01.01.</span>
+                </div>
+              </div>
+              <div
+                class="chatroom-item d-flex flex-row w-100 px-3 py-2 align-items-center justify-content-between"
+              >
+                <div class="chatroom-left d-flex flex-row gap-3 align-items-center">
+                  <div class="icon">
+                    <span class="material-symbols-rounded"> sensors_off </span>
+                  </div>
+                  <div class="chatroom-info d-flex flex-column gap-1">
+                    <span class="medium">jukim2</span>
+                    <span class="small">Hello, nice to meet you.</span>
+                  </div>
+                </div>
+                <div class="chatroom-right d-flex flex-column gap-2 align-items-end">
+                  <span class="small">15</span>
+                  <span class="small">24.01.01.</span>
+                </div>
+              </div>
+              <div
+                class="chatroom-item d-flex flex-row w-100 px-3 py-2 align-items-center justify-content-between"
+              >
+                <div class="chatroom-left d-flex flex-row gap-3 align-items-center">
+                  <div class="icon">
+                    <span class="material-symbols-rounded"> sensors_off </span>
+                  </div>
+                  <div class="chatroom-info d-flex flex-column gap-1">
+                    <span class="medium">jukim2</span>
+                    <span class="small">Hello, nice to meet you.</span>
+                  </div>
+                </div>
+                <div class="chatroom-right d-flex flex-column gap-2 align-items-end">
+                  <span class="small">15</span>
+                  <span class="small">24.01.01.</span>
+                </div>
+              </div>
+              <div
+                class="chatroom-item d-flex flex-row w-100 px-3 py-2 align-items-center justify-content-between"
+              >
+                <div class="chatroom-left d-flex flex-row gap-3 align-items-center">
+                  <div class="icon">
+                    <span class="material-symbols-rounded"> sensors_off </span>
+                  </div>
+                  <div class="chatroom-info d-flex flex-column gap-1">
+                    <span class="medium">jukim2</span>
+                    <span class="small">Hello, nice to meet you.</span>
+                  </div>
+                </div>
+                <div class="chatroom-right d-flex flex-column gap-2 align-items-end">
+                  <span class="small">15</span>
+                  <span class="small">24.01.01.</span>
+                </div>
+              </div>
+              <div
+                class="chatroom-item d-flex flex-row w-100 px-3 py-2 align-items-center justify-content-between"
+              >
+                <div class="chatroom-left d-flex flex-row gap-3 align-items-center">
+                  <div class="icon">
+                    <span class="material-symbols-rounded"> sensors_off </span>
+                  </div>
+                  <div class="chatroom-info d-flex flex-column gap-1">
+                    <span class="medium">jukim2</span>
+                    <span class="small">Hello, nice to meet you.</span>
+                  </div>
+                </div>
+                <div class="chatroom-right d-flex flex-column gap-2 align-items-end">
+                  <span class="small">15</span>
+                  <span class="small">24.01.01.</span>
+                </div>
+              </div>
+              <div
+                class="chatroom-item d-flex flex-row w-100 px-3 py-2 align-items-center justify-content-between"
+              >
+                <div class="chatroom-left d-flex flex-row gap-3 align-items-center">
+                  <div class="icon">
+                    <span class="material-symbols-rounded icon-green"> sensors </span>
+                  </div>
+                  <div class="chatroom-info d-flex flex-column gap-1">
+                    <span class="medium">jukim2</span>
+                    <span class="small">Hello, nice to meet you.</span>
+                  </div>
+                </div>
+                <div class="chatroom-right d-flex flex-column gap-2 align-items-end">
+                  <span class="small">15</span>
+                  <span class="small">24.01.01.</span>
+                </div>
+              </div>
+              <div
+                class="chatroom-item d-flex flex-row w-100 px-3 py-2 align-items-center justify-content-between"
+              >
+                <div class="chatroom-left d-flex flex-row gap-3 align-items-center">
+                  <div class="icon">
+                    <span class="material-symbols-rounded icon-green"> sensors </span>
+                  </div>
+                  <div class="chatroom-info d-flex flex-column gap-1">
+                    <span class="medium">jukim2</span>
+                    <span class="small">Hello, nice to meet you.</span>
+                  </div>
+                </div>
+                <div class="chatroom-right d-flex flex-column gap-2 align-items-end">
+                  <span class="small">15</span>
+                  <span class="small">24.01.01.</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="offcanvas-body px-4 py-3">
-            <ul class="navbar-nav justify-content-end flex-grow-1">
-              <li class="nav-item">
-                <div class="nav-link btn-menu p-3" id="menu-home-btn">Home</div>
-              </li>
-              <li class="nav-item">
-                <div class="nav-link btn-menu w-100 p-3" id="menu-play-btn">
-                  PLAY
+          <div id="offcanvas-chatroom" class="d-none h-100 flex-column">
+            <div class="offcanvas-header p-4">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">{ NAME }</h5>
+              <div
+                type="button"
+                class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              >
+                <span class="material-symbols-rounded"> close </span>
+              </div>
+            </div>
+            <div class="offcanvas-body px-3 py-0 d-flex flex-column justify-content-between">
+              <div class="d-flex flex-column gap-1">
+                <div class="chat-message-me d-flex px-3 py-2">
+                  <div class="d-inline-flex flex-column gap-2">
+                    <div class="chat-message-box px-3 py-3">
+                      <span class="medium">Hello, nice to meet you.</span>
+                    </div>
+                    <span class="small chat-timestamp">00:00</span>
+                  </div>
                 </div>
-              </li>
-              <li class="nav-item">
-                <div
-                  class="nav-link btn-menu w-100 p-3"
-                  id="menu-collections-btn"
-                >
-                  COLLECTIONS
+                <div class="chat-message-other d-flex px-3 py-2">
+                  <div class="d-inline-flex flex-column gap-2">
+                    <div class="chat-message-box px-3 py-3">
+                      <span class="medium">Hello, nice to meet you.</span>
+                    </div>
+                    <span class="small chat-timestamp">00:00</span>
+                  </div>
                 </div>
-              </li>
-              <li class="nav-item">
-                <div class="nav-link btn-menu w-100 p-3" id="menu-store-btn">
-                  STORE
+                <div class="chat-message-other d-flex px-3 py-2">
+                  <div class="d-inline-flex flex-column gap-2">
+                    <div class="chat-message-box px-3 py-3">
+                      <span class="medium">Hello, nice to meet you.</span>
+                    </div>
+                    <span class="small chat-timestamp">00:00</span>
+                  </div>
                 </div>
-              </li>
-              <li class="nav-item">
-                <div class="nav-link btn-menu w-100 p-3" id="menu-mypage-btn">
-                  MYPAGE
+                <div class="chat-message-me d-flex px-3 py-2">
+                  <div class="d-inline-flex flex-column gap-2">
+                    <div class="chat-message-box px-3 py-3">
+                      <span class="medium">Hello, nice to meet you.</span>
+                    </div>
+                    <span class="small chat-timestamp">00:00</span>
+                  </div>
                 </div>
-              </li>
-            </ul>
+              </div>
+              <div class="chatting-bottom-bar pb-4">
+                <div class="utilbar px-3 py-2 d-flex flex-row gap-3 justify-content-end">
+                  <div type="button" class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center">
+                    <span class="material-symbols-rounded"> videogame_asset </span>
+                  </div>
+                  <div type="button" class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center">
+                    <span class="material-symbols-rounded"> info </span>
+                  </div>
+                </div>
+                <div>
+                  <input
+                      id="chatting-input"
+                      type="text"
+                      class="border-radius-32 form-control ps-4 py-3"
+                      placeholder="Type..."
+                      aria-label="ChatInput"
+                      aria-describedby="basic-addon1"
+                    />
+                  <div id="btn-sendchat" class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center">
+                    <span class="material-symbols-rounded"> send </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
