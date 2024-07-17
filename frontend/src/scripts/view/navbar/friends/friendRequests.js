@@ -2,6 +2,10 @@ import { getAPI, postAPI } from "/src/scripts/utils/fetch.js";
 import { showToast } from "/src/scripts/utils/toast.js";
 import { HTTPCODE } from "/src/scripts/utils/var.js";
 
+var friendOffcanvas = new bootstrap.Offcanvas(
+  document.getElementById("offcanvas-friends")
+);
+
 export async function updateFriendRequests() {
   let response = await getAPI("v1/friends/requests");
   if (!response.ok) {
@@ -52,31 +56,54 @@ export async function updateFriendRequests() {
           console.log("click accept");
           const response = await postAPI(
             `v1/friends/requests/${item.id}/accept`,
-            null
+            {}
           );
+          const data = await response.json();
           switch (response.status) {
             case HTTPCODE.OK:
-              const data = await response.json();
-              showToast("check", "green", `~~~ 님과 친구가 되었습니다.`);
+              showToast(
+                "check",
+                "green",
+                `${data.friend_request.from_user.nickname} 님과 친구가 되었습니다.`
+              );
               break;
             default:
-              console.log(`handle error`);
+              showToast(
+                "close",
+                "red",
+                `${data.friend_request.from_user.nickname} 님과 친구가 되지 않았습니다.`
+              );
               break;
           }
+          friendOffcanvas.hide();
+          updateFriendRequests();
         });
       document
         .getElementById(`friend-request-decline-btn-${item.id}`)
         .addEventListener("click", async () => {
-          const response = await postAPI();
+          const response = await postAPI(
+            `v1/friends/requests/${item.id}/decline`,
+            {}
+          );
+          const data = await response.json();
           switch (response.status) {
             case HTTPCODE.OK:
-              const data = await response.json();
-              showToast("check", "green", `~~~ 님과 친구가 되었습니다.`);
+              showToast(
+                "check",
+                "green",
+                `${data.friend_request.from_user.nickname} 님의 친구 신청을 거절했습니다.`
+              );
               break;
             default:
-              console.log(`handle error`);
+              showToast(
+                "close",
+                "red",
+                `${data.friend_request.from_user.nickname} 님의 친구 신청 거절을 실패했습니다.`
+              );
               break;
           }
+          friendOffcanvas.hide();
+          updateFriendRequests();
         });
     });
   }
@@ -88,10 +115,6 @@ export function setAddFriend() {
     {
       backdrop: false,
     }
-  );
-
-  let friendOffcanvas = new bootstrap.Offcanvas(
-    document.getElementById("offcanvas-friends")
   );
 
   const friendRequest = document.getElementById("friends-add");

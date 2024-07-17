@@ -41,7 +41,9 @@ class FriendRequestViewSet(viewsets.ModelViewSet):
         )
 
     def list(self, request, *args, **kwargs):
-        requests = FriendRequest.objects.filter(to_user=request.user)
+        requests = FriendRequest.objects.filter(
+            to_user=request.user, status=FriendRequestStatus.PENDING.value
+        )
         return Response(FriendRequestSerializer(requests, many=True).data)
 
     @action(detail=True, methods=["post"])
@@ -49,8 +51,29 @@ class FriendRequestViewSet(viewsets.ModelViewSet):
         friend_request = self.get_object()
         if friend_request.to_user != request.user:
             return Response(
-                {"detail": "You cannot accept this friend request."},
+                {
+                    "detail": "You are not allowed to accept this friend request.",
+                    "friend_request": FriendRequestSerializer(friend_request).data,
+                },
                 status=status.HTTP_403_FORBIDDEN,
+            )
+        if friend_request.status != FriendRequestStatus.PENDING.value:
+            return Response(
+                {
+                    "detail": "You cannot accept this friend request.",
+                    "friend_request": FriendRequestSerializer(friend_request).data,
+                },
+                status=status.HTTP_409_CONFLICT,
+            )
+        if Friend.objects.filter(
+            user=friend_request.to_user, friend=friend_request.from_user
+        ).exists():
+            return Response(
+                {
+                    "detail": "You are already friend.",
+                    "friend_request": FriendRequestSerializer(friend_request).data,
+                },
+                status=status.HTTP_400_BAD_REQUEST,
             )
         Friend.objects.create(
             user=friend_request.from_user, friend=friend_request.to_user
@@ -61,21 +84,50 @@ class FriendRequestViewSet(viewsets.ModelViewSet):
         friend_request.status = FriendRequestStatus.ACCEPTED.value
         friend_request.save()
         return Response(
-            {"detail": "Friend request accepted."}, status=status.HTTP_200_OK
+            {
+                "detail": "Friend request accepted.",
+                "friend_request": FriendRequestSerializer(friend_request).data,
+            },
+            status=status.HTTP_200_OK,
         )
 
     @action(detail=True, methods=["post"])
-    def reject(self, request, pk=None):
+    def decline(self, request, pk=None):
         friend_request = self.get_object()
         if friend_request.to_user != request.user:
             return Response(
-                {"detail": "You cannot decline this friend request."},
+                {
+                    "detail": "You are not allowed to decline this friend request.",
+                    "friend_request": FriendRequestSerializer(friend_request).data,
+                },
                 status=status.HTTP_403_FORBIDDEN,
             )
-        friend_request.status = FriendRequestStatus.REJECTED.value
+        if friend_request.status != FriendRequestStatus.PENDING.value:
+            return Response(
+                {
+                    "detail": "You cannot decline this friend request.",
+                    "friend_request": FriendRequestSerializer(friend_request).data,
+                },
+                status=status.HTTP_409_CONFLICT,
+            )
+        if Friend.objects.filter(
+            user=friend_request.to_user, friend=friend_request.from_user
+        ).exists():
+            return Response(
+                {
+                    "detail": "You are already friend.",
+                    "friend_request": FriendRequestSerializer(friend_request).data,
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        friend_request.status = FriendRequestStatus.DECLINED.value
         friend_request.save()
         return Response(
-            {"detail": "Friend request rejected."}, status=status.HTTP_200_OK
+            {
+                "detail": "Friend request declined.",
+                "friend_request": FriendRequestSerializer(friend_request).data,
+            },
+            status=status.HTTP_200_OK,
         )
 
 

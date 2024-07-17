@@ -6,7 +6,7 @@ from django.conf import settings
 class FriendRequestStatus(Enum):
     PENDING = 0
     ACCEPTED = 1
-    REJECTED = 2
+    DECLINED = 2
 
 
 class FriendRequest(models.Model):
