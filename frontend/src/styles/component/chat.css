@@ -1,28 +1,28 @@
 .chat-message-me {
-	justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .chat-message-me .chat-timestamp {
-	text-align: right;
+  text-align: right;
 }
 
 .chat-message-me .chat-message-box {
-	background-color: rgba(255, 255, 255, 0.15);
-	border-radius: 16px 16px 0px 16px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 16px 16px 0px 16px;
 }
 
 .chat-message-other .chat-message-box {
-	background-color: rgba(255, 255, 255, 0.15);
-	border-radius: 16px 16px 16px 0px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 16px 16px 16px 0px;
 }
 
 #btn-sendchat {
-	cursor: pointer;
-	position: absolute;
-    bottom: 2rem;
-    right: 2rem;
+  cursor: pointer;
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
 }
 
 #chatting-input {
-	padding-right: 3.5rem;
+  padding-right: 3.5rem;
 }
