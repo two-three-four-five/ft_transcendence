@@ -71,17 +71,28 @@ export const HTTPCODE = {
   NETWORK_AUTHENTICATION_REQUIRED: 511,
 };
 
-export function getHostname() {
-  return "localhost";
-}
+const HOSTNAME = "localhost";
+const DJANGO_PORT = "2344";
+const DOMAIN = `${HOSTNAME}:${DJANGO_PORT}`;
 
-export function getDjangoPort() {
-  return "2344";
-}
-
-export function getServerHost() {
-  return "http://" + getHostname() + ":" + getDjangoPort();
-}
+export const API_CONFIG = {
+  HOSTNAME,
+  DJANGO_PORT,
+  DOMAIN,
+  BASE_URL: `http://${DOMAIN}`,
+  ENDPOINT: {
+    OAUTH: {
+      FT: "v1/auth/oauth/ft",
+      GOOGLE: "v1/auth/oauth/google",
+      NAVER: "v1/auth/oauth/naver",
+      KAKAO: "v1/auth/oauth/kakao",
+    },
+    TOKEN: {
+      VERIFY: "v1/auth/token/verify/",
+      REFRESH: "v1/auth/token/refresh/",
+    },
+  },
+};
 
 export function getSocialTypeName(type) {
   if (type == 0) return "FortyTwo";

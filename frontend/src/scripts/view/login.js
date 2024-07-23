@@ -1,5 +1,5 @@
 import { verifyToken } from "/src/scripts/utils/fetch.js";
-import { getServerHost } from "/src/scripts/utils/var.js";
+import { API_CONFIG } from "/src/scripts/utils/var.js";
 
 const ftLoginButton = document.getElementById("btn-oauth-ft");
 const googleLoginButton = document.getElementById("btn-oauth-google");
@@ -11,10 +11,10 @@ export function getAccessToken() {
 }
 
 export async function setLogin() {
-  ftLoginButton.href = getServerHost() + "/v1/auth/oauth/ft";
-  googleLoginButton.href = getServerHost() + "/v1/auth/oauth/google";
-  naverLoginButton.href = getServerHost() + "/v1/auth/oauth/naver";
-  kakaoLoginButton.href = getServerHost() + "/v1/auth/oauth/kakao";
+  ftLoginButton.href = API_CONFIG.BASE_URL + "/v1/auth/oauth/ft";
+  googleLoginButton.href = API_CONFIG.BASE_URL + "/v1/auth/oauth/google";
+  naverLoginButton.href = API_CONFIG.BASE_URL + "/v1/auth/oauth/naver";
+  kakaoLoginButton.href = API_CONFIG.BASE_URL + "/v1/auth/oauth/kakao";
 }
 
 export async function login() {

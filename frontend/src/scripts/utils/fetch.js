@@ -1,11 +1,8 @@
-import { HTTPCODE, getServerHost } from "/src/scripts/utils/var.js";
-
-const verifyPath = "v1/auth/token/verify/";
-const refreshPath = "v1/auth/token/refresh/";
+import { HTTPCODE, API_CONFIG } from "/src/scripts/utils/var.js";
 
 export async function verifyToken() {
   try {
-    const url = getServerHost() + "/" + verifyPath;
+    const url = API_CONFIG.BASE_URL + "/" + API_CONFIG.ENDPOINT.TOKEN.VERIFY;
     let accessToken = localStorage.getItem("accessToken");
     let jsonTokenData = { token: accessToken };
     let response = await fetch(url, {
@@ -36,7 +33,7 @@ export async function verifyToken() {
 
 async function refreshAccessToken() {
   try {
-    const url = getServerHost() + "/" + refreshPath;
+    const url = API_CONFIG.BASE_URL + "/" + API_CONFIG.ENDPOINT.TOKEN.REFRESH;
     let refreshToken = localStorage.getItem("refreshToken");
     let response = await fetch(url, {
       method: "POST",
@@ -61,7 +58,7 @@ async function refreshAccessToken() {
 
 export async function getAPI(path) {
   try {
-    const url = getServerHost() + "/" + path;
+    const url = API_CONFIG.BASE_URL + "/" + path;
     let accessToken = localStorage.getItem("accessToken");
     let response = await fetch(url, {
       method: "GET",
@@ -87,7 +84,7 @@ export async function getAPI(path) {
 
 export async function postAPI(path, jsonData) {
   try {
-    const url = getServerHost() + "/" + path;
+    const url = API_CONFIG.BASE_URL + "/" + path;
     let accessToken = localStorage.getItem("accessToken");
     let response = await fetch(url, {
       method: "POST",
