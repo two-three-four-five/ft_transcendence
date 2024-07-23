@@ -1,4 +1,4 @@
-import { getAPI, postAPI } from "/src/api/fetch.js";
+import Api from "/src/utils/api.js";
 import { showToast } from "/src/components/toast/toast.js";
 import { HTTPCODE } from "/src/utils/variables.js";
 
@@ -7,7 +7,7 @@ var friendOffcanvas = new bootstrap.Offcanvas(
 );
 
 export async function updateFriendRequests() {
-  let response = await getAPI("v1/friends/requests");
+  let response = await Api.get("v1/friends/requests");
   if (!response.ok) {
     /* TODO: error handling */
     return;
@@ -54,7 +54,7 @@ export async function updateFriendRequests() {
         .getElementById(`friend-request-accept-btn-${item.id}`)
         .addEventListener("click", async () => {
           console.log("click accept");
-          const response = await postAPI(
+          const response = await Api.post(
             `v1/friends/requests/${item.id}/accept`,
             {}
           );
@@ -81,7 +81,7 @@ export async function updateFriendRequests() {
       document
         .getElementById(`friend-request-decline-btn-${item.id}`)
         .addEventListener("click", async () => {
-          const response = await postAPI(
+          const response = await Api.post(
             `v1/friends/requests/${item.id}/decline`,
             {}
           );
@@ -137,7 +137,7 @@ export function setAddFriend() {
       return;
     }
 
-    const response = await postAPI("v1/friends/requests", {
+    const response = await Api.post("v1/friends/requests", {
       nickname: friendNickname,
     });
     switch (response.status) {

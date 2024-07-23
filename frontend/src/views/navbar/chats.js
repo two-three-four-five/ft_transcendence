@@ -1,4 +1,4 @@
-import { getAPI } from "/src/api/fetch.js";
+import Api from "/src/utils/api.js";
 import { showChatroom, updateChatroom } from "./chats/chatroom.js";
 
 const chatroomList = document.getElementById("chatrooms-list");
@@ -16,7 +16,7 @@ export async function updateChatrooms() {
   chatroom.hide();
   chatroomBottom.hide();
 
-  let response = await getAPI("v1/chatrooms/");
+  let response = await Api.get("v1/chatrooms/");
   if (!response.ok) {
     return;
   }

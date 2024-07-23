@@ -1,4 +1,4 @@
-import { verifyToken } from "/src/api/fetch.js";
+import Api from "/src/utils/api.js";
 import { API_CONFIG } from "/src/utils/variables.js";
 
 const ftLoginButton = document.getElementById("btn-oauth-ft");
@@ -35,5 +35,5 @@ export async function login() {
     window.history.replaceState(null, document.title, window.location.pathname);
   }
 
-  return await verifyToken();
+  return await Api.verifyToken();
 }

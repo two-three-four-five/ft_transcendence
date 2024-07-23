@@ -1,4 +1,4 @@
-import { getAPI } from "/src/api/fetch.js";
+import Api from "/src/utils/api.js";
 import { updateFriendRequests } from "./friends/friendRequests.js";
 
 let friendsData = [];
@@ -23,7 +23,7 @@ export function setFriends() {
 }
 
 export async function updateFriends() {
-  let response = await getAPI("v1/friends/");
+  let response = await Api.get("v1/friends/");
   if (!response.ok) {
     /* TODO: error handling */
     return;
