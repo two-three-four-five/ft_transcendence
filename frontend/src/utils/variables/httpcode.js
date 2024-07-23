@@ -1,4 +1,4 @@
-export const HTTPCODE = {
+const HTTPCODE = {
   // 1xx Informational
   CONTINUE: 100,
   SWITCHING_PROTOCOLS: 101,
@@ -71,34 +71,4 @@ export const HTTPCODE = {
   NETWORK_AUTHENTICATION_REQUIRED: 511,
 };
 
-const HOSTNAME = "localhost";
-const DJANGO_PORT = "2344";
-const DOMAIN = `${HOSTNAME}:${DJANGO_PORT}`;
-
-export const API_CONFIG = {
-  HOSTNAME,
-  DJANGO_PORT,
-  DOMAIN,
-  BASE_URL: `http://${DOMAIN}`,
-  ENDPOINT: {
-    OAUTH: {
-      FT: "v1/auth/oauth/ft",
-      GOOGLE: "v1/auth/oauth/google",
-      NAVER: "v1/auth/oauth/naver",
-      KAKAO: "v1/auth/oauth/kakao",
-    },
-    TOKEN: {
-      VERIFY: "v1/auth/token/verify/",
-      REFRESH: "v1/auth/token/refresh/",
-    },
-  },
-};
-
-export function getSocialTypeName(type) {
-  if (type == 0) return "FortyTwo";
-  else if (type == 1) return "Google";
-  else if (type == 2) return "Github";
-  else if (type == 3) return "Naver";
-  else if (type == 4) return "Kakao";
-  else return "unknown";
-}
+export { HTTPCODE };

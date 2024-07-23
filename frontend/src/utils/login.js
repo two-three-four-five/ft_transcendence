@@ -1,5 +1,5 @@
-import { verifyToken } from "/src/scripts/utils/fetch.js";
-import { API_CONFIG } from "/src/scripts/utils/var.js";
+import { verifyToken } from "/src/api/fetch.js";
+import { API_CONFIG } from "/src/utils/variables.js";
 
 const ftLoginButton = document.getElementById("btn-oauth-ft");
 const googleLoginButton = document.getElementById("btn-oauth-google");

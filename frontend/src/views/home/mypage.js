@@ -1,5 +1,5 @@
-import { formatDate } from "/src/scripts/utils/datetime.js";
-import { getSocialTypeName } from "/src/scripts/utils/var.js";
+import { formatDate } from "/src/utils/datetime.js";
+import { getSocialTypeName } from "/src/utils/variables.js";
 
 const mypageProfileNameCardNickname = document.getElementById(
   "mypage-profile-name-card-nickname"

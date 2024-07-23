@@ -1,7 +1,7 @@
-import { navigateTo } from "/src/scripts/utils/display.js";
-import { getAPI } from "/src/scripts/utils/fetch.js";
-import { showToast } from "/src/scripts/utils/toast.js";
-import { updateMypage } from "/src/scripts/view/home/mypage.js";
+import { getAPI } from "/src/api/fetch.js";
+import { navigateTo } from "/src/utils/display.js";
+import { showToast } from "/src/components/toast/toast.js";
+import { updateMypage } from "/src/views/home/mypage.js";
 
 const buttons = [
   { id: "home-play-btn", handler: handlePlayButtonClick },

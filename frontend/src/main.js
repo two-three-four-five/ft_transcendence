@@ -1,11 +1,7 @@
-import { setAppSwitch, navigateTo } from "/src/scripts/utils/display.js";
-import { setHome, updateHome } from "/src/scripts/view/home.js";
-import { login, setLogin } from "/src/scripts/view/login.js";
-import {
-  setNavbar,
-  updateNavbar,
-  initWebSocket,
-} from "/src/scripts/view/navbar.js";
+import { setAppSwitch, navigateTo } from "/src/utils/display.js";
+import { login, setLogin } from "/src/utils/login.js";
+import { setHome, updateHome } from "/src/views/home.js";
+import { setNavbar, updateNavbar, initWebSocket } from "/src/views/navbar.js";
 
 function setApp() {
   setLogin();

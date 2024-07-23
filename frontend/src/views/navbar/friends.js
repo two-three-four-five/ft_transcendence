@@ -1,5 +1,5 @@
-import { getAPI } from "/src/scripts/utils/fetch.js";
-import { updateFriendRequests } from "/src/scripts/view/navbar/friends/friendRequests.js";
+import { getAPI } from "/src/api/fetch.js";
+import { updateFriendRequests } from "./friends/friendRequests.js";
 
 let friendsData = [];
 

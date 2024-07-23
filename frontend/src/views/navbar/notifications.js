@@ -1,4 +1,4 @@
-import { showToast } from "/src/scripts/utils/toast.js";
+import { showToast } from "/src/components/toast/toast.js";
 
 const notificationsList = document.getElementById("notifications-list");
 

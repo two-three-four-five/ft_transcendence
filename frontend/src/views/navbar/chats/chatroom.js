@@ -1,5 +1,5 @@
-import { getAPI, postAPI } from "/src/scripts/utils/fetch.js";
-import { showToast } from "/src/scripts/utils/toast.js";
+import { getAPI, postAPI } from "/src/api/fetch.js";
+import { showToast } from "/src/components/toast/toast.js";
 
 const chatroomList = document.getElementById("chatrooms-list");
 const chatroom = document.getElementById("chatroom");

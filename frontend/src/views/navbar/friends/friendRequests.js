@@ -1,6 +1,6 @@
-import { getAPI, postAPI } from "/src/scripts/utils/fetch.js";
-import { showToast } from "/src/scripts/utils/toast.js";
-import { HTTPCODE } from "/src/scripts/utils/var.js";
+import { getAPI, postAPI } from "/src/api/fetch.js";
+import { showToast } from "/src/components/toast/toast.js";
+import { HTTPCODE } from "/src/utils/variables.js";
 
 var friendOffcanvas = new bootstrap.Offcanvas(
   document.getElementById("offcanvas-friends")

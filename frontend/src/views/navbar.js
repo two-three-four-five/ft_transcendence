@@ -1,17 +1,13 @@
 import {
   updateNotifications,
   alertNotifications,
-} from "/src/scripts/view/navbar/notifications.js";
-import { setFriends, updateFriends } from "/src/scripts/view/navbar/friends.js";
+} from "./navbar/notifications.js";
+import { setFriends, updateFriends } from "./navbar/friends.js";
 import {
   setAddFriend,
   updateFriendRequests,
-} from "/src/scripts/view/navbar/friends/friendRequests.js";
-import {
-  setChatrooms,
-  updateChatrooms,
-  alertChats,
-} from "/src/scripts/view/navbar/chats.js";
+} from "./navbar/friends/friendRequests.js";
+import { setChatrooms, updateChatrooms, alertChats } from "./navbar/chats.js";
 
 export function setNavbar() {
   setLogout();

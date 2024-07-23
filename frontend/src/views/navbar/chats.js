@@ -1,8 +1,5 @@
-import { getAPI } from "/src/scripts/utils/fetch.js";
-import {
-  showChatroom,
-  updateChatroom,
-} from "/src/scripts/view/navbar/chats/chatroom.js";
+import { getAPI } from "/src/api/fetch.js";
+import { showChatroom, updateChatroom } from "./chats/chatroom.js";
 
 const chatroomList = document.getElementById("chatrooms-list");
 const chatroom = document.getElementById("chatroom");
