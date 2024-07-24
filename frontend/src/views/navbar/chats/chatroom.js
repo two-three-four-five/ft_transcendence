@@ -1,4 +1,5 @@
 import Api from "/src/utils/api.js";
+import { API_CONFIG } from "/src/utils/variables.js";
 import { showToast } from "/src/components/toast/toast.js";
 
 const chatroomList = document.getElementById("chatrooms-list");
@@ -51,7 +52,9 @@ export async function updateChatroom(chatroomId) {
   let chatsList = document.getElementById(`chats-list-${chatroomId}`);
   chatsList.innerText = "";
 
-  let response = await Api.get(`v1/chatrooms/${chatroomId}/chats`);
+  let response = await Api.get(
+    `${API_CONFIG.ENDPOINT.CHATROOMS}${chatroomId}/chats`
+  );
   if (!response.ok) {
     return;
   }
@@ -93,7 +96,7 @@ export async function updateChatroom(chatroomId) {
 }
 
 async function sendChat(chatroomId, message) {
-  let response = await Api.post("v1/chats/", {
+  let response = await Api.post(API_CONFIG.ENDPOINT.CHATS, {
     chatroom: chatroomId,
     message: message,
   });

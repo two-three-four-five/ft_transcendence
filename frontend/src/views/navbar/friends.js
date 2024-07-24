@@ -1,5 +1,6 @@
 import Api from "/src/utils/api.js";
 import { updateFriendRequests } from "./friends/friendRequests.js";
+import { API_CONFIG } from "../../utils/variables.js";
 
 let friendsData = [];
 
@@ -23,7 +24,7 @@ export function setFriends() {
 }
 
 export async function updateFriends() {
-  let response = await Api.get("v1/friends/");
+  let response = await Api.get(API_CONFIG.ENDPOINT.FRIENDS);
   if (!response.ok) {
     /* TODO: error handling */
     return;

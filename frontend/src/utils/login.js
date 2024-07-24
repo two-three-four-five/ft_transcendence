@@ -6,15 +6,11 @@ const googleLoginButton = document.getElementById("btn-oauth-google");
 const naverLoginButton = document.getElementById("btn-oauth-naver");
 const kakaoLoginButton = document.getElementById("btn-oauth-kakao");
 
-export function getAccessToken() {
-  return localStorage.getItem("accessToken");
-}
-
 export async function setLogin() {
-  ftLoginButton.href = API_CONFIG.BASE_URL + "/v1/auth/oauth/ft";
-  googleLoginButton.href = API_CONFIG.BASE_URL + "/v1/auth/oauth/google";
-  naverLoginButton.href = API_CONFIG.BASE_URL + "/v1/auth/oauth/naver";
-  kakaoLoginButton.href = API_CONFIG.BASE_URL + "/v1/auth/oauth/kakao";
+  ftLoginButton.href = `${API_CONFIG.BASE_URL}/${API_CONFIG.ENDPOINT.OAUTH.FT}`;
+  googleLoginButton.href = `${API_CONFIG.BASE_URL}/${API_CONFIG.ENDPOINT.OAUTH.GOOGLE}`;
+  naverLoginButton.href = `${API_CONFIG.BASE_URL}/${API_CONFIG.ENDPOINT.OAUTH.NAVER}`;
+  kakaoLoginButton.href = `${API_CONFIG.BASE_URL}/${API_CONFIG.ENDPOINT.OAUTH.KAKAO}`;
 }
 
 export async function login() {

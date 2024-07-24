@@ -1,13 +1,13 @@
+import { HTTPCODE, API_CONFIG } from "/src/utils/variables.js";
 import Api from "/src/utils/api.js";
 import { showToast } from "/src/components/toast/toast.js";
-import { HTTPCODE } from "/src/utils/variables.js";
 
 var friendOffcanvas = new bootstrap.Offcanvas(
   document.getElementById("offcanvas-friends")
 );
 
 export async function updateFriendRequests() {
-  let response = await Api.get("v1/friends/requests");
+  let response = await Api.get(API_CONFIG.ENDPOINT.FRIENDS.REQUESTS);
   if (!response.ok) {
     /* TODO: error handling */
     return;
@@ -55,8 +55,7 @@ export async function updateFriendRequests() {
         .addEventListener("click", async () => {
           console.log("click accept");
           const response = await Api.post(
-            `v1/friends/requests/${item.id}/accept`,
-            {}
+            `${API_CONFIG.ENDPOINT.FRIENDS.REQUESTS}${item.id}/accept`
           );
           const data = await response.json();
           switch (response.status) {
@@ -82,8 +81,7 @@ export async function updateFriendRequests() {
         .getElementById(`friend-request-decline-btn-${item.id}`)
         .addEventListener("click", async () => {
           const response = await Api.post(
-            `v1/friends/requests/${item.id}/decline`,
-            {}
+            `${API_CONFIG.ENDPOINT.FRIENDS.REQUESTS}${item.id}/decline`
           );
           const data = await response.json();
           switch (response.status) {
@@ -137,7 +135,7 @@ export function setAddFriend() {
       return;
     }
 
-    const response = await Api.post("v1/friends/requests", {
+    const response = await Api.post("API_CONFIG.ENDPOINT.FRIENDS.REQUESTS", {
       nickname: friendNickname,
     });
     switch (response.status) {

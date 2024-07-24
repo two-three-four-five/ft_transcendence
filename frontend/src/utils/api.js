@@ -20,7 +20,7 @@ class Api {
       }
       let response = await fetch(url, options);
       if (response.status == HTTPCODE.UNAUTHORIZED) {
-        accessToken = await Api.refreshAccessToken();
+        accessToken = await this.refreshAccessToken();
         headers.Authorization = `Bearer ${accessToken}`;
         response = await fetch(url, options);
       }
@@ -36,6 +36,17 @@ class Api {
 
   static async post(path, jsonData) {
     return Api.request("POST", path, jsonData);
+  }
+
+  static async verifyAccessToken() {
+    let accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+      return false;
+    }
+    let response = await this.post(API_CONFIG.ENDPOINT.TOKEN.VERIFY, {
+      token: accessToken,
+    });
+    return response.ok;
   }
 
   static async refreshAccessToken() {
@@ -60,37 +71,6 @@ class Api {
     } catch {
       console.error(`Error: ${err.message}`);
       return null;
-    }
-  }
-
-  static async verifyAccessToken() {
-    try {
-      const url = API_CONFIG.BASE_URL + "/" + API_CONFIG.ENDPOINT.TOKEN.VERIFY;
-      let accessToken = localStorage.getItem("accessToken");
-      let jsonTokenData = { token: accessToken };
-      let response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRFToken": getCookie("csrftoken"),
-        },
-        body: JSON.stringify(jsonTokenData),
-      });
-      if (!response.ok) {
-        accessToken = await Api.refreshAccessToken();
-        jsonTokenData = { token: accessToken };
-        response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": getCookie("csrftoken"),
-          },
-          body: JSON.stringify(jsonTokenData),
-        });
-      }
-      return response.ok;
-    } catch {
-      return false;
     }
   }
 }
