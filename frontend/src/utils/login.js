@@ -35,5 +35,5 @@ export async function login() {
     window.history.replaceState(null, document.title, window.location.pathname);
   }
 
-  return await Api.verifyToken();
+  return await Api.verifyAccessToken();
 }

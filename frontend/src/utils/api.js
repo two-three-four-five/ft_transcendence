@@ -1,77 +1,41 @@
 import { API_CONFIG, HTTPCODE } from "/src/utils/variables.js";
+import { getCookie } from "./api/getCookie.js";
 
 class Api {
-  static async get(path) {
+  static async request(method, path, jsonData = null) {
     try {
-      const url = API_CONFIG.BASE_URL + "/" + path;
+      const url = `${API_CONFIG.BASE_URL}/${path}`;
       let accessToken = localStorage.getItem("accessToken");
-      let response = await fetch(url, {
-        method: "GET",
-        headers: {
-          Authorization: "Bearer " + accessToken,
-        },
-      });
+      let headers = {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+        "X-CSRFToken": getCookie("csrftoken"),
+      };
+      let options = {
+        method,
+        headers,
+      };
+      if (jsonData) {
+        options.body = JSON.stringify(jsonData);
+      }
+      let response = await fetch(url, options);
       if (response.status == HTTPCODE.UNAUTHORIZED) {
         accessToken = await Api.refreshAccessToken();
-        response = await fetch(url, {
-          method: "GET",
-          headers: {
-            Authorization: "Bearer " + accessToken,
-          },
-        });
+        headers.Authorization = `Bearer ${accessToken}`;
+        response = await fetch(url, options);
       }
       return response;
     } catch (err) {
-      console.error(`Error: ${err.message}`);
+      console.error(`${method} request failed: ${err.message}`);
       return null;
     }
+  }
+  static async get(path) {
+    return Api.request("GET", path);
   }
 
   static async post(path, jsonData) {
-    try {
-      const url = API_CONFIG.BASE_URL + "/" + path;
-      let accessToken = localStorage.getItem("accessToken");
-      let response = await fetch(url, {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer " + accessToken,
-          "Content-Type": "application/json",
-          "X-CSRFToken": Api.getCookie("csrftoken"),
-        },
-        body: JSON.stringify(jsonData),
-      });
-      if (response.status == HTTPCODE.UNAUTHORIZED) {
-        accessToken = await Api.refreshAccessToken();
-        response = await fetch(url, {
-          method: "POST",
-          headers: {
-            Authorization: "Bearer " + accessToken,
-            "Content-Type": "application/json",
-            "X-CSRFToken": Api.getCookie("csrftoken"),
-          },
-          body: JSON.stringify(jsonData),
-        });
-      }
-      return response;
-    } catch (err) {
-      console.error(`Error: ${err.message}`);
-      return null;
-    }
-  }
-
-  static getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== "") {
-      const cookies = document.cookie.split(";");
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, name.length + 1) === name + "=") {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-          break;
-        }
-      }
-    }
-    return cookieValue;
+    return Api.request("POST", path, jsonData);
   }
 
   static async refreshAccessToken() {
@@ -82,7 +46,7 @@ class Api {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-CSRFToken": Api.getCookie("csrftoken"),
+          "X-CSRFToken": getCookie("csrftoken"),
         },
         body: JSON.stringify({ refresh: refreshToken }),
       });
@@ -91,7 +55,7 @@ class Api {
       }
       const data = await response.json();
       localStorage.setItem("accessToken", data.access);
-      console.log("accessToken updated");
+      console.log(`AccessToken updated: ${Date()}`);
       return data.access;
     } catch {
       console.error(`Error: ${err.message}`);
@@ -99,7 +63,7 @@ class Api {
     }
   }
 
-  static async verifyToken() {
+  static async verifyAccessToken() {
     try {
       const url = API_CONFIG.BASE_URL + "/" + API_CONFIG.ENDPOINT.TOKEN.VERIFY;
       let accessToken = localStorage.getItem("accessToken");
@@ -108,7 +72,7 @@ class Api {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-CSRFToken": Api.getCookie("csrftoken"),
+          "X-CSRFToken": getCookie("csrftoken"),
         },
         body: JSON.stringify(jsonTokenData),
       });
@@ -119,7 +83,7 @@ class Api {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-CSRFToken": Api.getCookie("csrftoken"),
+            "X-CSRFToken": getCookie("csrftoken"),
           },
           body: JSON.stringify(jsonTokenData),
         });
