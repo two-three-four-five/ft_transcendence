@@ -1,6 +1,7 @@
 import Api from "/src/utils/api.js";
 import { updateFriendRequests } from "./friends/friendRequests.js";
 import { API_CONFIG } from "../../utils/variables.js";
+import { showChatroom, updateChatroom } from "./chats/chatroom.js";
 
 let friendsData = [];
 
@@ -61,11 +62,13 @@ function displayFriends(data) {
 					    class="d-flex flex-row gap-2 p-0 align-items-center justify-content-center"
 				    >
               <div
+                id="friend-chat-${item.id}"
                 class="btn btn-navbar p-2"
               >
-                <span class="material-symbols-rounded"> forum </span>
+              <span class="material-symbols-rounded"> forum </span>
               </div>
               <div
+                id="friend-info-${item.id}"
                 class="btn btn-navbar p-2"
               >
                 <span class="material-symbols-rounded"> info </span>
@@ -73,5 +76,34 @@ function displayFriends(data) {
 				    </div>
 			    </div>
 		    `;
+  });
+
+  data.forEach((item) => {
+    document
+      .getElementById(`friend-chat-${item.id}`)
+      .addEventListener("click", async () => {
+        const response = await Api.post(API_CONFIG.ENDPOINT.CHATROOMS, {
+          nicknames: [item.friend.nickname],
+        });
+        if (!response) {
+        }
+        let data = await response.json();
+        {
+          var friendsOffcanvas = document.getElementById("offcanvas-friends");
+          var fOffcanvas =
+            bootstrap.Offcanvas.getInstance(friendsOffcanvas) ||
+            new bootstrap.Offcanvas(friendsOffcanvas);
+          fOffcanvas.hide();
+
+          var chatOffcanvas = document.getElementById("offcanvas-chat");
+          var cOffcanvas =
+            bootstrap.Offcanvas.getInstance(chatOffcanvas) ||
+            new bootstrap.Offcanvas(chatOffcanvas);
+          cOffcanvas.show();
+
+          showChatroom(data.id);
+          updateChatroom(data.id);
+        }
+      });
   });
 }

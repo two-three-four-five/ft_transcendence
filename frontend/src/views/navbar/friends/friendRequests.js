@@ -7,7 +7,7 @@ var friendOffcanvas = new bootstrap.Offcanvas(
 );
 
 export async function updateFriendRequests() {
-  let response = await Api.get(API_CONFIG.ENDPOINT.FRIENDS.REQUESTS);
+  let response = await Api.get(API_CONFIG.ENDPOINT.FRIENDS_REQUESTS);
   if (!response.ok) {
     /* TODO: error handling */
     return;
@@ -55,7 +55,7 @@ export async function updateFriendRequests() {
         .addEventListener("click", async () => {
           console.log("click accept");
           const response = await Api.post(
-            `${API_CONFIG.ENDPOINT.FRIENDS.REQUESTS}${item.id}/accept`
+            `${API_CONFIG.ENDPOINT.FRIENDS_REQUESTS}${item.id}/accept/`
           );
           const data = await response.json();
           switch (response.status) {
@@ -81,7 +81,7 @@ export async function updateFriendRequests() {
         .getElementById(`friend-request-decline-btn-${item.id}`)
         .addEventListener("click", async () => {
           const response = await Api.post(
-            `${API_CONFIG.ENDPOINT.FRIENDS.REQUESTS}${item.id}/decline`
+            `${API_CONFIG.ENDPOINT.FRIENDS_REQUESTS}${item.id}/decline/`
           );
           const data = await response.json();
           switch (response.status) {
@@ -135,7 +135,7 @@ export function setAddFriend() {
       return;
     }
 
-    const response = await Api.post("API_CONFIG.ENDPOINT.FRIENDS.REQUESTS", {
+    const response = await Api.post(API_CONFIG.ENDPOINT.FRIENDS_REQUESTS, {
       nickname: friendNickname,
     });
     switch (response.status) {

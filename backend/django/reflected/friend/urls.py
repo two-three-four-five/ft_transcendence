@@ -1,7 +1,7 @@
-from rest_framework.routers import SimpleRouter
+from rest_framework.routers import DefaultRouter
 from .views import FriendRequestViewSet, FriendViewSet
 
-FriendRouter = SimpleRouter(trailing_slash=False)
+FriendRouter = DefaultRouter()
 
 FriendRouter.register(r"requests", FriendRequestViewSet, basename="requests")
 FriendRouter.register(r"", FriendViewSet, basename="friends")

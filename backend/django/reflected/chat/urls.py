@@ -1,11 +1,11 @@
 from django.urls import path
 
-from rest_framework.routers import SimpleRouter
+from rest_framework.routers import DefaultRouter
 from . import views
 from .views import ChatRoomViewSet, ChatViewSet
 
-ChatRouter = SimpleRouter(trailing_slash=False)
+ChatRouter = DefaultRouter(trailing_slash=False)
 ChatRouter.register(r"", ChatViewSet, basename="chats")
 
-ChatRoomRouter = SimpleRouter(trailing_slash=False)
+ChatRoomRouter = DefaultRouter(trailing_slash=False)
 ChatRoomRouter.register(r"", ChatRoomViewSet, basename="chatrooms")

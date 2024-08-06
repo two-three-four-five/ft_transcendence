@@ -19,7 +19,7 @@ const API_CONFIG = {
       REFRESH: "v1/auth/token/refresh/",
     },
     FRIENDS: "v1/friends/",
-    FRINED_REQUESTS: "v1/friends/requests/",
+    FRIENDS_REQUESTS: "v1/friends/requests/",
     CHATS: "v1/chats/",
     CHATROOMS: "v1/chatrooms/",
   },

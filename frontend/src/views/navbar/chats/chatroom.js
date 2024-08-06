@@ -53,7 +53,7 @@ export async function updateChatroom(chatroomId) {
   chatsList.innerText = "";
 
   let response = await Api.get(
-    `${API_CONFIG.ENDPOINT.CHATROOMS}${chatroomId}/chats`
+    `${API_CONFIG.ENDPOINT.CHATROOMS}${chatroomId}/chats/`
   );
   if (!response.ok) {
     return;
