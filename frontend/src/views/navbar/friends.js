@@ -1,6 +1,7 @@
+import { formatDate } from "/src/utils/datetime.js";
 import Api from "/src/utils/api.js";
 import { updateFriendRequests } from "./friends/friendRequests.js";
-import { API_CONFIG } from "../../utils/variables.js";
+import { API_CONFIG, getSocialTypeName } from "../../utils/variables.js";
 import { showChatroom, updateChatroom } from "./chats/chatroom.js";
 
 let friendsData = [];
@@ -90,10 +91,10 @@ function displayFriends(data) {
         let data = await response.json();
         {
           var friendsOffcanvas = document.getElementById("offcanvas-friends");
-          var fOffcanvas =
+          var fsOffcanvas =
             bootstrap.Offcanvas.getInstance(friendsOffcanvas) ||
             new bootstrap.Offcanvas(friendsOffcanvas);
-          fOffcanvas.hide();
+          fsOffcanvas.hide();
 
           var chatOffcanvas = document.getElementById("offcanvas-chat");
           var cOffcanvas =
@@ -104,6 +105,34 @@ function displayFriends(data) {
           showChatroom(data.id);
           updateChatroom(data.id);
         }
+      });
+
+    document
+      .getElementById(`friend-info-${item.id}`)
+      .addEventListener("click", async () => {
+        var friendsOffcanvas = document.getElementById("offcanvas-friends");
+        var fsOffcanvas =
+          bootstrap.Offcanvas.getInstance(friendsOffcanvas) ||
+          new bootstrap.Offcanvas(friendsOffcanvas);
+        fsOffcanvas.hide();
+
+        var friendOffcanvas = document.getElementById("offcanvas-friend");
+        var fOffcanvas =
+          bootstrap.Offcanvas.getInstance(friendOffcanvas) ||
+          new bootstrap.Offcanvas(friendOffcanvas);
+        fOffcanvas.show();
+
+        var name = document.getElementById("friend-profile-name-card-nickname");
+        name.innerText = item.friend.nickname;
+
+        var about = document.getElementById(
+          "friend-profile-name-card-register-date"
+        );
+        about.innerText =
+          formatDate(item.friend.date_joined) +
+          " " +
+          getSocialTypeName(item.friend.social_type) +
+          " 가입";
       });
   });
 }

@@ -357,6 +357,110 @@
             </div>
           </div>
         </div>
+        <div
+          class="offcanvas offcanvas-end border-0"
+          tabindex="-1"
+          id="offcanvas-friend"
+          aria-labelledby="offcanvas-friend-label"
+        >
+          <div class="offcanvas-header p-4">
+            <span
+              class="black-han-sans-regular large offcanvas-title"
+              id="offcanvasNavbarLabel"
+              >Friend</span
+            >
+            <div class="d-flex flex-row p-0 gap-2">
+              <div
+                id="friend-block-btn"
+                type="button"
+                class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
+              >
+                <span class="material-symbols-rounded"> block </span>
+              </div>
+              <div
+                type="button"
+                class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              >
+                <span class="material-symbols-rounded"> close </span>
+              </div>
+            </div>
+          </div>
+          <div
+            id="friend-info"
+            class="offcanvas-body d-flex flex-column align-items-center justify-content px-4 py-0 gap-3"
+          >
+            <div class="w-100 d-flex flex-column align-items-center gap-3">
+              <div
+                class="card card--transparent w-100 d-flex flex-row align-items-center p-3 gap-4"
+              >
+                <span id="friend-profile-name-card-image">image</span>
+                <div
+                  id="friend-profile-name-card-text"
+                  class="d-flex flex-column justify-content-center gap-2"
+                >
+                  <span id="friend-profile-name-card-nickname" class="x-large"
+                    >nickname</span
+                  >
+                  <span
+                    id="friend-profile-name-card-register-date"
+                    class="medium"
+                    >1970.01.01. Social 가입</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              id="friend-history-section"
+              class="w-100 d-flex flex-column justify-content-center gap-3"
+            >
+              <span class="large">Match History</span>
+              <div
+                class="w-100 d-flex flex-row align-items-center justify-content-center gap-3"
+              >
+                <div
+                  class="w-100 card card--white d-flex flex-row align-items-center justify-content-between"
+                >
+                  <span class="material-symbols-rounded"> joystick </span>
+                  <span id="friend-history-record-card-text" class="medium"
+                    >0W 0L</span
+                  >
+                </div>
+                <div
+                  class="w-100 card card--white d-flex flex-row align-items-center justify-content-between"
+                >
+                  <span class="material-symbols-rounded"> trophy </span>
+                  <span id="friend-history-probability-card-text" class="medium"
+                    >0%</span
+                  >
+                </div>
+              </div>
+              <div
+                id="friend-histories"
+                class="w-100 d-flex flex-column align-items-center justify-content-center gap-2"
+              >
+                <div
+                  class="list w-100 d-flex flex-row align-items-center justify-content-between"
+                >
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-center gap-3"
+                  >
+                    <span class="material-symbols-rounded">swords</span>
+                    <span class="medium">nickname</span>
+                  </div>
+
+                  <div
+                    class="d-flex flex-column align-items-center justify-content-center gap-1"
+                  >
+                    <span class="small">0:0</span>
+                    <span class="small">70.01.01</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
     <div id="app-login" class="container-app mx-auto d-none">
