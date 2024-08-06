@@ -1,5 +1,7 @@
-import { formatDate } from "/src/utils/datetime.js";
 import Api from "/src/utils/api.js";
+import OffcanvasManager from "/src/components/offcanvas/offcanvas.js";
+
+import { formatDate } from "/src/utils/datetime.js";
 import { updateFriendRequests } from "./friends/friendRequests.js";
 import { API_CONFIG, getSocialTypeName } from "../../utils/variables.js";
 import { showChatroom, updateChatroom } from "./chats/chatroom.js";
@@ -90,18 +92,8 @@ function displayFriends(data) {
         }
         let data = await response.json();
         {
-          var friendsOffcanvas = document.getElementById("offcanvas-friends");
-          var fsOffcanvas =
-            bootstrap.Offcanvas.getInstance(friendsOffcanvas) ||
-            new bootstrap.Offcanvas(friendsOffcanvas);
-          fsOffcanvas.hide();
-
-          var chatOffcanvas = document.getElementById("offcanvas-chat");
-          var cOffcanvas =
-            bootstrap.Offcanvas.getInstance(chatOffcanvas) ||
-            new bootstrap.Offcanvas(chatOffcanvas);
-          cOffcanvas.show();
-
+          OffcanvasManager.hide("offcanvas-friends");
+          OffcanvasManager.show("offcanvas-chat");
           showChatroom(data.id);
           updateChatroom(data.id);
         }
@@ -110,17 +102,8 @@ function displayFriends(data) {
     document
       .getElementById(`friend-info-${item.id}`)
       .addEventListener("click", async () => {
-        var friendsOffcanvas = document.getElementById("offcanvas-friends");
-        var fsOffcanvas =
-          bootstrap.Offcanvas.getInstance(friendsOffcanvas) ||
-          new bootstrap.Offcanvas(friendsOffcanvas);
-        fsOffcanvas.hide();
-
-        var friendOffcanvas = document.getElementById("offcanvas-friend");
-        var fOffcanvas =
-          bootstrap.Offcanvas.getInstance(friendOffcanvas) ||
-          new bootstrap.Offcanvas(friendOffcanvas);
-        fOffcanvas.show();
+        OffcanvasManager.hide("offcanvas-friends");
+        OffcanvasManager.show("offcanvas-friend");
 
         var name = document.getElementById("friend-profile-name-card-nickname");
         name.innerText = item.friend.nickname;
