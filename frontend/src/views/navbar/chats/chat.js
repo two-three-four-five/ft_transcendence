@@ -1,8 +1,13 @@
 import Api from "/src/utils/api.js";
+import OffcanvasManager from "/src/components/offcanvas/offcanvas.js";
+
 import { API_CONFIG } from "/src/utils/variables.js";
 import { showToast } from "/src/components/toast/toast.js";
 
 const chatList = document.getElementById("offcanvas-chat-list");
+const chatHeader = document.getElementById("offcanvas-chat-header");
+
+const myNickname = localStorage.getItem("nickname");
 
 export async function setChat(chatroomId) {
   let chatsLists = chatList.querySelectorAll(":scope > div");
@@ -13,6 +18,20 @@ export async function setChat(chatroomId) {
       div.show();
     }
   });
+
+  const response = await Api.get(
+    `${API_CONFIG.ENDPOINT.CHATROOMS}${chatroomId}`
+  );
+
+  if (!response.ok) {
+  }
+  const data = await response.json();
+  for (const participant of data.participants) {
+    if (participant != myNickname) {
+      chatHeader.innerText = participant;
+      break;
+    }
+  }
 
   const chatInput = document.getElementById("offcanvas-chat-input");
   const newInput = chatInput.cloneNode(true);
@@ -41,8 +60,6 @@ export async function setChat(chatroomId) {
 }
 
 export async function updateChat(chatroomId) {
-  const myNickname = localStorage.getItem("nickname");
-
   let chatsList = document.getElementById(`offcanvas-chat-list-${chatroomId}`);
   chatsList.innerText = "";
 
@@ -87,6 +104,27 @@ export async function updateChat(chatroomId) {
     lastMessage.scrollIntoView();
     // lastMessage.scrollIntoView({ behavior: "smooth" });
   }
+
+  const challengeBtn = document.getElementById("offcanvas-chat-challenge-btn");
+  const infoBtn = document.getElementById("offcanvas-chat-info-btn");
+
+  challengeBtn.addEventListener("click", () => {
+    OffcanvasManager.hide("offcanvas-chat");
+    OffcanvasManager.show("offcanvas-friend");
+
+    var name = document.getElementById("friend-profile-name-card-nickname");
+    // name.innerText = item.friend.nickname;
+
+    var about = document.getElementById(
+      "friend-profile-name-card-register-date"
+    );
+    // about.innerText =
+    //   formatDate(item.friend.date_joined) +
+    //   " " +
+    //   getSocialTypeName(item.friend.social_type) +
+    //   " 가입";
+  });
+  infoBtn.addEventListener("click", () => {});
 }
 
 async function sendChat(chatroomId, message) {
