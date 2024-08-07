@@ -4,7 +4,7 @@ import OffcanvasManager from "/src/components/offcanvas/offcanvas.js";
 import { formatDate } from "/src/utils/datetime.js";
 import { updateFriendRequests } from "./friends/friendRequests.js";
 import { API_CONFIG, getSocialTypeName } from "../../utils/variables.js";
-import { showChatroom, updateChatroom } from "./chats/chatroom.js";
+import { setChat, updateChat } from "./chats/chat.js";
 
 let friendsData = [];
 
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 export function setFriends() {
-  const friendsList = document.getElementById("nav-friend-btn");
+  const friendsList = document.getElementById("nav-friends-btn");
   friendsList.addEventListener("click", updateFriends);
 
   const friendsTab = document.getElementById("friends-tab");
@@ -94,8 +94,8 @@ function displayFriends(data) {
         {
           OffcanvasManager.hide("offcanvas-friends");
           OffcanvasManager.show("offcanvas-chat");
-          showChatroom(data.id);
-          updateChatroom(data.id);
+          setChat(data.id);
+          updateChat(data.id);
         }
       });
 

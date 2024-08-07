@@ -2,25 +2,19 @@ import Api from "/src/utils/api.js";
 import { API_CONFIG } from "/src/utils/variables.js";
 import { showToast } from "/src/components/toast/toast.js";
 
-const chatroomList = document.getElementById("chatrooms-list");
-const chatroom = document.getElementById("chatroom");
-const chatroomBottom = document.getElementById("chatroom-bottom");
+const chatList = document.getElementById("offcanvas-chat-list");
 
-export async function showChatroom(chatroomId) {
-  chatroomList.hide();
-  chatroom.show();
-  chatroomBottom.show();
-
-  let chatsLists = chatroom.querySelectorAll(":scope > div");
+export async function setChat(chatroomId) {
+  let chatsLists = chatList.querySelectorAll(":scope > div");
   chatsLists.forEach((div) => {
-    if (div.id != `chats-list-${chatroomId}`) {
+    if (div.id != `offcanvas-chat-list-${chatroomId}`) {
       div.hide();
     } else {
       div.show();
     }
   });
 
-  const chatInput = document.getElementById("chatting-input");
+  const chatInput = document.getElementById("offcanvas-chat-input");
   const newInput = chatInput.cloneNode(true);
   chatInput.parentNode.replaceChild(newInput, chatInput);
 
@@ -34,7 +28,7 @@ export async function showChatroom(chatroomId) {
     }
   });
 
-  let chatSendBtn = document.getElementById("btn-sendchat");
+  let chatSendBtn = document.getElementById("offcanvas-chat-send-btn");
   let newButton = chatSendBtn.cloneNode(true);
   chatSendBtn.parentNode.replaceChild(newButton, chatSendBtn);
 
@@ -46,10 +40,10 @@ export async function showChatroom(chatroomId) {
   });
 }
 
-export async function updateChatroom(chatroomId) {
+export async function updateChat(chatroomId) {
   const myNickname = localStorage.getItem("nickname");
 
-  let chatsList = document.getElementById(`chats-list-${chatroomId}`);
+  let chatsList = document.getElementById(`offcanvas-chat-list-${chatroomId}`);
   chatsList.innerText = "";
 
   let response = await Api.get(

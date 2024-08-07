@@ -1,37 +1,34 @@
-import { API_CONFIG } from "/src/utils/variables.js";
 import Api from "/src/utils/api.js";
-import { showChatroom, updateChatroom } from "./chats/chatroom.js";
+import OffcanvasManager from "/src/components/offcanvas/offcanvas.js";
 
-const chatroomList = document.getElementById("chatrooms-list");
-const chatroom = document.getElementById("chatroom");
-const chatroomBottom = document.getElementById("chatroom-bottom");
+import { API_CONFIG } from "/src/utils/variables.js";
+import { setChat, updateChat } from "./chats/chat.js";
+
+const chatsList = document.getElementById("offcanvas-chats-list");
+const chatList = document.getElementById("offcanvas-chat-list");
 const myNickname = localStorage.getItem("nickname");
 
-export function setChatrooms() {
-  const chatroomBtn = document.getElementById("nav-chat-btn");
-  chatroomBtn.addEventListener("click", updateChatrooms);
+export function setChats() {
+  const chatroomBtn = document.getElementById("nav-chats-btn");
+  chatroomBtn.addEventListener("click", updateChats);
 }
 
-export async function updateChatrooms() {
-  chatroomList.show();
-  chatroom.hide();
-  chatroomBottom.hide();
-
+export async function updateChats() {
   let response = await Api.get(API_CONFIG.ENDPOINT.CHATROOMS);
   if (!response.ok) {
     return;
   }
   let data = await response.json();
-  chatroomList.innerHTML = "";
+  chatsList.innerHTML = "";
 
   for (let item of data) {
     await (async (item) => {
       let friendNickname = await item.participants.find(
         (participant) => participant !== myNickname
       );
-      chatroomList.innerHTML += `
+      chatsList.innerHTML += `
       <div
-        id="chatroom-${item.id}"
+        id="offcanvas-chats-room-${item.id}"
         class="chatroom-item card card--transparent d-flex flex-row w-100 px-3 py-2 align-items-center justify-content-between"
       >
         <div
@@ -57,19 +54,21 @@ export async function updateChatrooms() {
     `;
     })(item);
 
-    let chatListDiv = document.getElementById(`chats-list-${item.id}`);
+    let chatListDiv = document.getElementById(`offcanvas-chat-list-${item.id}`);
     if (!chatListDiv) {
-      chatroom.innerHTML += `
-        <div id="chats-list-${item.id}" class="d-flex flex-column gap-1"></div>
+      chatList.innerHTML += `
+        <div id="offcanvas-chat-list-${item.id}" class="d-flex flex-column gap-1"></div>
       `;
     }
   }
   for (let item of data) {
     document
-      .getElementById(`chatroom-${item.id}`)
+      .getElementById(`offcanvas-chats-room-${item.id}`)
       .addEventListener("click", () => {
-        showChatroom(item.id);
-        updateChatroom(item.id);
+        OffcanvasManager.hide("offcanvas-chats");
+        OffcanvasManager.show("offcanvas-chat");
+        setChat(item.id);
+        updateChat(item.id);
       });
   }
 }
@@ -84,9 +83,9 @@ export function alertChats() {
   socket.onmessage = function (event) {
     const data = JSON.parse(event.data);
     if (data.object == "chat") {
-      updateChatroom(data.chatroom_id);
+      updateChat(data.chatroom_id);
     } else if (data.object == "chatroom") {
-      updateChatrooms();
+      updateChats();
     }
   };
 

@@ -58,7 +58,7 @@
 
         <div class="d-flex align-items-center justify-content-center">
           <button
-            id="nav-noti-btn"
+            id="nav-notifications-btn"
             class="btn btn-navbar p-2"
             type="button"
             data-bs-toggle="offcanvas"
@@ -69,7 +69,7 @@
             <span class="material-symbols-rounded"> notifications </span>
           </button>
           <button
-            id="nav-friend-btn"
+            id="nav-friends-btn"
             class="btn btn-navbar ms-2 p-2"
             type="button"
             data-bs-toggle="offcanvas"
@@ -80,11 +80,11 @@
             <span class="material-symbols-rounded"> people </span>
           </button>
           <button
-            id="nav-chat-btn"
+            id="nav-chats-btn"
             class="btn btn-navbar ms-2 p-2"
             type="button"
             data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvas-chat"
+            data-bs-target="#offcanvas-chats"
             aria-controls="offcanvasNavbar"
             aria-label="Toggle navigation"
           >
@@ -291,57 +291,79 @@
         <div
           class="offcanvas offcanvas-end border-0"
           tabindex="-1"
-          id="offcanvas-chat"
+          id="offcanvas-chats"
           aria-labelledby="offcanvas-chat-label"
         >
-          <div id="offcanvas-chatrooms" class="d-flex h-100 flex-column">
-            <div class="offcanvas-header p-4">
-              <span
-                class="black-han-sans-regular large offcanvas-title"
-                id="offcanvasNavbarLabel"
-                >Chats</span
-              >
-              <div
-                type="button"
-                class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"
-              >
-                <span class="material-symbols-rounded"> close </span>
-              </div>
+          <div class="offcanvas-header p-4">
+            <span
+              class="black-han-sans-regular large offcanvas-title"
+              id="offcanvas-chats-header"
+              >Chats</span
+            >
+            <div
+              type="button"
+              class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            >
+              <span class="material-symbols-rounded"> close </span>
             </div>
+          </div>
+          <div
+            id="offcanvas-chats-list"
+            class="offcanvas-body px-3 py-0 d-flex flex-column gap-1"
+          ></div>
+        </div>
+        <div
+          class="offcanvas offcanvas-end border-0"
+          tabindex="-1"
+          id="offcanvas-chat"
+          aria-labelledby="offcanvas-chat"
+        >
+          <div class="offcanvas-header p-4">
+            <span
+              class="black-han-sans-regular large offcanvas-title"
+              id="offcanvas-chat-header"
+              >Chat</span
+            >
             <div
-              id="chatrooms-list"
-              class="offcanvas-body px-3 py-0 d-flex flex-column gap-1"
-            ></div>
+              type="button"
+              class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            >
+              <span class="material-symbols-rounded"> close </span>
+            </div>
+          </div>
+          <div
+            id="offcanvas-chat-list"
+            class="offcanvas-body px-3 py-0 d-flex flex-column justify-content-between"
+          ></div>
+          <div
+            id="offcanvas-chat-bottom"
+            class="d-flex flex-column px-3 pt-0 pb-4 gap-0"
+          >
             <div
-              id="chatroom"
-              class="offcanvas-body px-3 py-0 d-flex flex-column justify-content-between"
-            ></div>
-            <div
-              id="chatroom-bottom"
-              class="d-flex flex-column px-3 pt-0 pb-4 gap-0"
+              class="utilbar py-2 px-3 d-flex flex-row gap-3 justify-content-end"
             >
               <div
-                class="utilbar py-2 px-3 d-flex flex-row gap-3 justify-content-end"
+                id="offcanvas-chat-challenage-btn"
+                type="button"
+                class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
               >
-                <div
-                  type="button"
-                  class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
-                >
-                  <span class="material-symbols-rounded">
-                    videogame_asset
-                  </span>
-                </div>
-                <div
-                  type="button"
-                  class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
-                >
-                  <span class="material-symbols-rounded"> info </span>
-                </div>
+                <span class="material-symbols-rounded"> videogame_asset </span>
               </div>
+              <div
+                id="offcanvas-chat-info-btn"
+                type="button"
+                class="btn-navbar rounded-circle p-0 d-flex flex-row align-items-center justify-content-center"
+              >
+                <span class="material-symbols-rounded"> info </span>
+              </div>
+            </div>
+            <div class="position-relative">
               <input
-                id="chatting-input"
+                id="offcanvas-chat-input"
                 type="text"
                 class="border-radius-32 form-control ps-4 py-3"
                 placeholder="Type..."
@@ -349,8 +371,8 @@
                 aria-describedby="basic-addon1"
               />
               <div
-                id="btn-sendchat"
-                class="btn-navbar rounded-circle d-flex flex-row align-items-center justify-content-center"
+                id="offcanvas-chat-send-btn"
+                class="position-absolute top-50 end-0 translate-middle btn-navbar rounded-circle d-flex flex-row align-items-center justify-content-center"
               >
                 <span class="material-symbols-rounded"> send </span>
               </div>
@@ -366,7 +388,7 @@
           <div class="offcanvas-header p-4">
             <span
               class="black-han-sans-regular large offcanvas-title"
-              id="offcanvasNavbarLabel"
+              id="offcanvas-friend-header"
               >Friend</span
             >
             <div class="d-flex flex-row p-0 gap-2">

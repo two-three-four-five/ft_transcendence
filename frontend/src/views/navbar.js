@@ -7,13 +7,13 @@ import {
   setAddFriend,
   updateFriendRequests,
 } from "./navbar/friends/friendRequests.js";
-import { setChatrooms, updateChatrooms, alertChats } from "./navbar/chats.js";
+import { setChats, updateChats, alertChats } from "./navbar/chats.js";
 
 export function setNavbar() {
   setLogout();
   setBack();
   setFriends();
-  setChatrooms();
+  setChats();
 }
 
 export function updateNavbar() {
@@ -21,7 +21,7 @@ export function updateNavbar() {
   updateNotifications();
   updateFriends();
   updateFriendRequests();
-  updateChatrooms();
+  updateChats();
 }
 
 export function initWebSocket() {
