@@ -1,6 +1,15 @@
-import { showToast } from "/src/components/toast/toast.js";
+import Api from "/src/utils/api.js";
+import OffcanvasManager from "/src/components/offcanvas/offcanvas.js";
 
-const notificationsList = document.getElementById("notifications-list");
+import { API_CONFIG } from "/src/utils/variables.js";
+import { showToast } from "/src/components/toast/toast.js";
+import { updateFriends } from "./friends.js";
+import { updateFriendRequests } from "./friends/friendRequests.js";
+import { updateChats } from "./chats.js";
+
+const notificationsList = document.getElementById(
+  "offcanvas-notifications-list"
+);
 
 function getNotificationIcon(notificaitonType) {
   switch (notificaitonType) {
@@ -46,38 +55,57 @@ function getNotificationMessage(fromUser, notificaitonType) {
   }
 }
 
-export function updateNotifications() {
-  const accessToken = localStorage.getItem("accessToken");
+export async function updateNotifications() {
+  const response = await Api.get(API_CONFIG.ENDPOINT.NOTIFICATIONS);
+  if (!response.ok) {
+  }
+  const data = await response.json();
+
   notificationsList.innerHTML = "";
+  for (let item of data) {
+    let icon = getNotificationIcon(item.type);
+    let message = getNotificationMessage(item.from_user.nickname, item.type);
 
-  const url = `http://localhost:2344/v1/notifications/`;
-  fetch(url, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      data.forEach((notification) => {
-        let icon = getNotificationIcon(notification.type);
-        let message = getNotificationMessage(
-          notification.from_user.nickname,
-          notification.type
-        );
+    notificationsList.innerHTML += `
+        <div
+          id="offcanvas-notifications-list-${item.id}"
+          class="w-100 p-3 list d-flex flex-row justify-content-start align-items-center gap-3"
+        >
+          <span class="material-symbols-rounded"> ${icon} </span>
+          <span class="medium"> ${message} </span>
+        </div>`;
+  }
 
-        notificationsList.innerHTML += `
-              <div
-                class="w-100 p-3 list d-flex flex-row justify-content-start align-items-center gap-3"
-              >
-                <span class="material-symbols-rounded"> ${icon} </span>
-                <span class="medium"> ${message} </span>
-              </div>`;
+  for (let item of data) {
+    document
+      .getElementById(`offcanvas-notifications-list-${item.id}`)
+      .addEventListener("click", () => {
+        OffcanvasManager.hide("offcanvas-notifications");
+
+        switch (item.type) {
+          case "0":
+          case "FRIEND_REQUEST":
+            OffcanvasManager.show("offcanvas-friends");
+            updateFriendRequests();
+            break;
+          case "1":
+          case "FRIEND_ACCEPTED":
+          case "2":
+          case "FRIEND_DECLINED":
+            OffcanvasManager.show("offcanvas-friends");
+            updateFriends();
+          case "3":
+          case "NEW_CHATTING":
+            OffcanvasManager.show("offcanvas-chats");
+            updateChats();
+          case "4":
+          case "GAME_REQUEST":
+            break;
+          default:
+            break;
+        }
       });
-    })
-    .catch((error) => {
-      console.error("Error fetching notifications:", error);
-    });
+  }
 }
 
 export function alertNotifications() {
