@@ -23,4 +23,10 @@
 #gameroom-list {
   overflow: auto;
   height: calc(100vh - 280px);
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+#gameroom-list::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
 }
