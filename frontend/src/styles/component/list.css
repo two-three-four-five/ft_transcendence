@@ -19,3 +19,8 @@
 .list:active {
   background-color: var(--color-black-20);
 }
+
+#gameroom-list {
+  overflow: auto;
+  height: calc(100vh - 280px);
+}
