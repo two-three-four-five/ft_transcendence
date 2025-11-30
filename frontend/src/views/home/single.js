@@ -19,12 +19,15 @@ let handleKeydown = function (event) {
   }
 };
 
+let handleStartClick = function (event) {
+  SocketManager.send("single", JSON.stringify({ type: "start" }));
+};
+
 export function updateSinglePlay() {
   initSinglePlaySocket();
 
-  startBtn.addEventListener("click", () => {
-    SocketManager.send("single", JSON.stringify({ type: "start" }));
-  });
+  startBtn.removeEventListener("click", handleStartClick);
+  startBtn.addEventListener("click", handleStartClick);
 }
 
 function initSinglePlaySocket() {

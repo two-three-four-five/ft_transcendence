@@ -37,7 +37,7 @@ class SingleGameConsumer(AsyncWebsocketConsumer):
         if self.user.is_authenticated:
             await self.channel_layer.group_discard(self.group_name, self.channel_name)
             logger.info(f"")
-            self.update_task.cancel()
+            self.update_loop.cancel()
 
     async def receive(self, text_data):
         data = json.loads(text_data)

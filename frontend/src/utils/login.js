@@ -1,13 +1,13 @@
 import Api from "/src/utils/api.js";
 import { API_CONFIG } from "/src/utils/variables.js";
 
-const ftLoginButton = document.getElementById("btn-oauth-ft");
+// const ftLoginButton = document.getElementById("btn-oauth-ft");
 const googleLoginButton = document.getElementById("btn-oauth-google");
 const naverLoginButton = document.getElementById("btn-oauth-naver");
 const kakaoLoginButton = document.getElementById("btn-oauth-kakao");
 
 export async function setLogin() {
-  ftLoginButton.href = `${API_CONFIG.BASE_URL}/${API_CONFIG.ENDPOINT.OAUTH.FT}`;
+  // ftLoginButton.href = `${API_CONFIG.BASE_URL}/${API_CONFIG.ENDPOINT.OAUTH.FT}`;
   googleLoginButton.href = `${API_CONFIG.BASE_URL}/${API_CONFIG.ENDPOINT.OAUTH.GOOGLE}`;
   naverLoginButton.href = `${API_CONFIG.BASE_URL}/${API_CONFIG.ENDPOINT.OAUTH.NAVER}`;
   kakaoLoginButton.href = `${API_CONFIG.BASE_URL}/${API_CONFIG.ENDPOINT.OAUTH.KAKAO}`;
